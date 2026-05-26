@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SubToWin | Crime Vault Africa</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231e6fff'/><text y='75' x='50' text-anchor='middle' font-size='60' font-family='Arial Black' fill='white'>S</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bk:#080a0f;--dk:#0d1117;--cd:#161b22;--c2:#1c2230;--br:#21262d;--bl:#1e6fff;--bg:rgba(30,111,255,0.2);--bl2:#4d8fff;--wh:#f0f6fc;--mt:#7d8590;--gd:#f0b429;--rd:#ff4545;--gr:#2ea043;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--bk);color:var(--wh);font-family:'Barlow',sans-serif;overflow-x:hidden;}
+#ldr{position:fixed;inset:0;z-index:9999;background:var(--bk);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .7s;}
+#ldr.out{opacity:0;pointer-events:none;}
+.ll{font-family:'Bebas Neue',sans-serif;font-size:5rem;letter-spacing:6px;}.ll span{color:var(--bl);}
+.ls{color:var(--mt);font-size:.75rem;letter-spacing:3px;margin-top:.3rem;}
+.lb{width:220px;height:3px;background:var(--br);border-radius:3px;margin-top:2rem;overflow:hidden;}
+.lf{height:100%;background:var(--bl);animation:lf 2s ease forwards;}
+@keyframes lf{0%{width:0}100%{width:100%}}
+nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;background:rgba(8,10,15,.93);backdrop-filter:blur(18px);border-bottom:1px solid var(--br);}
+.nl{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;letter-spacing:3px;cursor:pointer;color:var(--wh);text-decoration:none;}.nl span{color:var(--bl);}
+.nm{display:flex;gap:1.6rem;}.nm a{color:var(--mt);text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;cursor:pointer;}.nm a:hover{color:var(--wh);}
+.nr{display:flex;align-items:center;gap:.9rem;}
+.lw{display:flex;border:1px solid var(--br);border-radius:6px;overflow:hidden;}
+.lb2{background:transparent;border:none;color:var(--mt);padding:.32rem .7rem;cursor:pointer;font-family:'Barlow',sans-serif;font-size:.75rem;font-weight:700;transition:all .2s;}.lb2.active{background:var(--bl);color:#fff;}
+.bn{background:var(--bl);color:#fff;border:none;padding:.58rem 1.3rem;border-radius:7px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;font-size:.84rem;transition:all .2s;}.bn:hover{background:var(--bl2);transform:translateY(-1px);}
+.hm{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}.hm span{display:block;width:24px;height:2px;background:var(--wh);border-radius:2px;}
+#bnr{display:none;background:linear-gradient(90deg,#0a3db5,var(--bl));padding:.55rem 2rem;text-align:center;font-size:.86rem;font-weight:600;margin-top:58px;}
+#bnr.show{display:block;}
+.tw{position:fixed;top:78px;right:1rem;z-index:1000;display:flex;flex-direction:column;gap:.6rem;max-width:310px;pointer-events:none;}
+.tst{background:var(--c2);border:1px solid var(--br);border-radius:10px;padding:.9rem 1.1rem;font-size:.86rem;animation:tin .35s ease;box-shadow:0 4px 24px rgba(0,0,0,.5);pointer-events:all;}
+.tst.out{animation:tout .35s ease forwards;}
+@keyframes tin{from{transform:translateX(110%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes tout{to{transform:translateX(110%);opacity:0}}
+.tt{font-weight:700;margin-bottom:.25rem;}.tb2{color:var(--mt);font-size:.82rem;}
+.page{display:none;padding-top:58px;min-height:100vh;}.page.active{display:block;}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:5rem 1.5rem 4rem;text-align:center;}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 55% at 50% -5%,rgba(30,111,255,.14) 0%,transparent 70%),linear-gradient(180deg,var(--bk) 0%,var(--dk) 100%);}
+.hgr{position:absolute;inset:0;background-image:linear-gradient(var(--br) 1px,transparent 1px),linear-gradient(90deg,var(--br) 1px,transparent 1px);background-size:50px 50px;opacity:.22;mask-image:radial-gradient(ellipse at center,black 20%,transparent 72%);}
+.hi{position:relative;z-index:1;max-width:860px;width:100%;}
+.hbdg{display:inline-flex;align-items:center;gap:.5rem;background:rgba(30,111,255,.11);border:1px solid rgba(30,111,255,.38);padding:.42rem 1rem;border-radius:50px;font-size:.76rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bl2);margin-bottom:1.7rem;}
+.ld{width:7px;height:7px;background:var(--rd);border-radius:50%;animation:bk 1.2s infinite;}
+@keyframes bk{0%,100%{opacity:1}50%{opacity:.15}}
+.ht{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,13vw,11rem);line-height:.88;letter-spacing:3px;margin-bottom:.8rem;}
+.ht .t1{display:block;color:var(--wh);}.ht .t2{display:block;color:var(--bl);text-shadow:0 0 80px rgba(30,111,255,.45);}
+.hs{font-size:1.02rem;color:var(--mt);margin-bottom:2.3rem;line-height:1.75;}.hs strong{color:var(--wh);font-weight:600;}
+.pr{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.3rem;}
+.pc{background:var(--cd);border:1px solid var(--br);border-radius:12px;padding:1.2rem 1.5rem;text-align:center;min-width:120px;position:relative;overflow:hidden;transition:all .3s;}
+.pc:hover{transform:translateY(-4px);border-color:var(--bl);}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--bl),transparent);}
+.prk{font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mt);margin-bottom:.4rem;}
+.pa{font-family:'Bebas Neue',sans-serif;font-size:2.1rem;color:var(--gd);}
+.pu{font-size:.73rem;color:var(--mt);}
+.ngb{color:var(--mt);font-size:.95rem;padding:1.2rem 2rem;background:var(--cd);border:1px solid var(--br);border-radius:12px;display:inline-block;}
+.cds{margin-bottom:2.2rem;}.cdl{font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mt);margin-bottom:.85rem;}
+.cdc{display:flex;gap:.75rem;justify-content:center;align-items:center;}
+.cdi{text-align:center;}
+.cdn{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5.5vw,3.4rem);line-height:1;color:var(--wh);background:var(--cd);border:1px solid var(--br);border-radius:8px;padding:.5rem .75rem;min-width:68px;display:block;}
+.cdu{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mt);margin-top:.35rem;}
+.csp{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--bl);padding-bottom:.9rem;}
+.pct{display:inline-flex;align-items:center;gap:.55rem;color:var(--mt);font-size:.88rem;margin-bottom:1.9rem;}
+.pct .dot{width:8px;height:8px;background:var(--gr);border-radius:50%;animation:bk 1.5s infinite;}
+.bp{background:var(--bl);color:#fff;border:none;padding:.95rem 2.6rem;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.12rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .25s;box-shadow:0 0 32px var(--bg);display:inline-block;text-decoration:none;}
+.bp:hover{background:var(--bl2);transform:translateY(-2px);}
+.bp:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none;}
+.bs{background:transparent;color:var(--wh);border:1px solid var(--br);padding:.95rem 1.9rem;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:1.02rem;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all .2s;display:inline-block;}
+.bs:hover{border-color:var(--bl);color:var(--bl);}
+.bd{background:var(--rd);color:#fff;border:none;padding:.65rem 1.3rem;border-radius:7px;font-family:'Barlow',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;}.bd:hover{background:#cc0000;}
+.bg2{background:var(--gd);color:#000;border:none;padding:.65rem 1.3rem;border-radius:7px;font-family:'Barlow',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;}
+.hb{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.sec{padding:5rem 1.5rem;}.scd{background:var(--dk);}
+.inn{max-width:1100px;margin:0 auto;}
+.slb{font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--bl);margin-bottom:.75rem;}
+.st{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5.5vw,4.3rem);line-height:1;margin-bottom:.75rem;}
+.ss{color:var(--mt);font-size:.96rem;line-height:1.75;max-width:520px;}
+.sh{text-align:center;margin-bottom:3.3rem;}.sh .ss{margin:0 auto;}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.15rem;}
+.sc{background:var(--cd);border:1px solid var(--br);border-radius:12px;padding:1.7rem 1.4rem;transition:all .3s;position:relative;}
+.sc:hover{border-color:var(--bl);transform:translateY(-4px);}
+.sn{font-family:'Bebas Neue',sans-serif;font-size:3.3rem;color:var(--bl);opacity:.18;line-height:1;margin-bottom:.7rem;}
+.si{font-size:1.7rem;margin-bottom:.7rem;}
+.stl{font-family:'Barlow Condensed',sans-serif;font-size:1.02rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:.45rem;}
+.sd{color:var(--mt);font-size:.86rem;line-height:1.6;}
+.rw{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;}
+.rl{list-style:none;display:flex;flex-direction:column;gap:.85rem;}
+.ri{display:flex;align-items:flex-start;gap:.9rem;background:var(--cd);border:1px solid var(--br);border-radius:10px;padding:1.05rem;transition:border-color .2s;}.ri:hover{border-color:var(--bl);}
+.ric{font-size:1.15rem;flex-shrink:0;margin-top:.1rem;}
+.rt strong{display:block;font-size:.9rem;margin-bottom:.18rem;}.rt span{color:var(--mt);font-size:.83rem;line-height:1.5;}
+.ph{padding:4.5rem 1.5rem 3rem;text-align:center;background:linear-gradient(180deg,var(--dk) 0%,var(--bk) 100%);border-bottom:1px solid var(--br);}
+.ov{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s;}
+.ov.active{opacity:1;pointer-events:all;}
+.md{background:var(--cd);border:1px solid var(--br);border-radius:16px;width:100%;max-width:500px;max-height:92vh;overflow-y:auto;transform:translateY(22px);transition:transform .3s;}
+.ov.active .md{transform:translateY(0);}
+.mh{padding:1.35rem 1.75rem;border-bottom:1px solid var(--br);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--cd);z-index:1;}
+.mt2{font-family:'Bebas Neue',sans-serif;font-size:1.65rem;letter-spacing:2px;}
+.mc{background:none;border:none;color:var(--mt);font-size:1.35rem;cursor:pointer;transition:color .2s;}.mc:hover{color:var(--wh);}
+.mb{padding:1.75rem;}
+.tabs{display:flex;border:1px solid var(--br);border-radius:8px;overflow:hidden;margin-bottom:1.4rem;}
+.tab{flex:1;background:transparent;border:none;color:var(--mt);padding:.72rem;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:700;font-size:.86rem;transition:all .2s;}.tab.active{background:var(--bl);color:#fff;}
+.fg{margin-bottom:1.05rem;}
+.fl{display:block;font-size:.76rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--mt);margin-bottom:.42rem;}
+.fi{width:100%;background:var(--dk);border:1px solid var(--br);border-radius:8px;padding:.76rem .95rem;color:var(--wh);font-family:'Barlow',sans-serif;font-size:.92rem;transition:border-color .2s;outline:none;}.fi:focus{border-color:var(--bl);}.fi::placeholder{color:var(--mt);}
+.fs{width:100%;background:var(--dk);border:1px solid var(--br);border-radius:8px;padding:.76rem .95rem;color:var(--wh);font-family:'Barlow',sans-serif;font-size:.92rem;cursor:pointer;outline:none;}.fs:focus{border-color:var(--bl);}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fc{display:flex;align-items:flex-start;gap:.65rem;cursor:pointer;}
+.fc input{margin-top:3px;accent-color:var(--bl);width:15px;height:15px;flex-shrink:0;}
+.fc span{font-size:.84rem;color:var(--mt);line-height:1.5;}.fc a{color:var(--bl);cursor:pointer;}
+.si2{display:flex;align-items:center;gap:.38rem;margin-bottom:1.5rem;}
+.sd2{width:8px;height:8px;border-radius:50%;background:var(--br);transition:all .3s;}.sd2.active{background:var(--bl);width:22px;border-radius:4px;}.sd2.done{background:var(--gr);}
+.sl3{margin-left:auto;font-size:.76rem;color:var(--mt);font-weight:600;letter-spacing:1px;}
+.al{padding:.75rem .95rem;border-radius:8px;font-size:.86rem;margin-bottom:.95rem;line-height:1.55;}
+.ae{background:rgba(255,69,69,.11);border:1px solid rgba(255,69,69,.33);color:#ff9090;}
+.as2{background:rgba(46,160,67,.11);border:1px solid rgba(46,160,67,.33);color:#56d364;}
+.ai{background:var(--bg);border:1px solid rgba(30,111,255,.38);color:var(--bl2);}
+.aw{background:rgba(240,180,41,.11);border:1px solid rgba(240,180,41,.33);color:var(--gd);}
+.yb{width:100%;background:#ff0000;color:#fff;border:none;border-radius:8px;padding:.95rem;font-family:'Barlow',sans-serif;font-size:.98rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.8rem;}.yb:hover{background:#cc0000;}
+.vs{background:var(--dk);border:1px solid var(--br);border-radius:8px;padding:.95rem;display:flex;align-items:center;gap:.9rem;margin-bottom:.95rem;}
+.vi{font-size:1.25rem;flex-shrink:0;}.vt strong{display:block;margin-bottom:.18rem;font-size:.9rem;}.vt span{color:var(--mt);font-size:.82rem;}
+.pb{margin-bottom:1rem;}
+.ps{display:flex;align-items:center;gap:.8rem;padding:.6rem 0;border-bottom:1px solid var(--br);font-size:.86rem;}.ps:last-child{border-bottom:none;}
+.pi{font-size:1rem;flex-shrink:0;width:24px;text-align:center;}
+.pl{flex:1;color:var(--mt);}.pl.dn{color:var(--wh);}
+.pst{font-size:.78rem;font-weight:700;}
+.vl{display:flex;flex-direction:column;gap:.6rem;margin:1rem 0;}
+.vli{display:flex;align-items:center;gap:.8rem;background:var(--dk);border:1px solid var(--br);border-radius:8px;padding:.75rem 1rem;text-decoration:none;color:var(--wh);transition:border-color .2s;font-size:.86rem;}.vli:hover{border-color:var(--bl);}
+.vli span{color:var(--bl2);font-size:.78rem;margin-left:auto;white-space:nowrap;}
+.sb{text-align:center;padding:1.2rem .5rem;}
+.sei{font-size:3.8rem;margin-bottom:.9rem;}
+.en{font-family:'Bebas Neue',sans-serif;font-size:4.8rem;color:var(--bl);letter-spacing:5px;line-height:1;text-shadow:0 0 40px var(--bg);margin:.7rem 0;}
+.cb{background:var(--c2);border:1px solid var(--br);color:var(--mt);padding:.35rem .85rem;border-radius:6px;cursor:pointer;font-size:.78rem;margin-left:.5rem;transition:all .2s;font-family:'Barlow',sans-serif;}.cb:hover{border-color:var(--bl);color:var(--bl);}
+.sr{display:flex;gap:.75rem;justify-content:center;margin-top:1.1rem;flex-wrap:wrap;}
+.sb2{padding:.58rem 1.1rem;border-radius:8px;border:none;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:700;font-size:.83rem;}
+.sw{background:#25d366;color:#fff;}.sf{background:#1877f2;color:#fff;}
+.sb3{display:flex;gap:1rem;margin-bottom:1.3rem;}
+.si3{flex:1;background:var(--cd);border:1px solid var(--br);border-radius:8px;padding:.75rem .95rem;color:var(--wh);font-family:'Barlow',sans-serif;font-size:.92rem;outline:none;}.si3:focus{border-color:var(--bl);}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.85rem;}
+.pk{background:var(--cd);border:1px solid var(--br);border-radius:10px;padding:.95rem;text-align:center;transition:border-color .2s;}.pk:hover{border-color:var(--bl);}
+.pn{font-family:'Bebas Neue',sans-serif;font-size:1.85rem;color:var(--bl);}
+.pu2{color:var(--mt);font-size:.8rem;margin-top:.18rem;}
+.es{text-align:center;padding:5rem 2rem;color:var(--mt);}.es .ei{font-size:3.2rem;margin-bottom:.9rem;}
+.wg{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.3rem;}
+.wc{background:var(--cd);border:1px solid var(--br);border-radius:12px;padding:1.4rem;}
+.wc.gld{border-color:rgba(240,180,41,.35);}
+.wt{display:flex;align-items:center;gap:.95rem;margin-bottom:.9rem;flex-wrap:wrap;}
+.wr{font-family:'Bebas Neue',sans-serif;font-size:2.3rem;color:var(--gd);line-height:1;min-width:46px;}
+.wi strong{display:block;font-size:.97rem;}.wi span{color:var(--mt);font-size:.83rem;}
+.wp{margin-left:auto;font-family:'Bebas Neue',sans-serif;font-size:1.75rem;color:var(--gd);}
+.wpr{margin-top:.9rem;border-top:1px solid var(--br);padding-top:.9rem;}
+.wpr img{width:100%;max-width:380px;border-radius:8px;border:1px solid var(--br);}
+.pp{color:var(--mt);font-size:.83rem;font-style:italic;}
+.bdg{display:inline-block;padding:.18rem .65rem;border-radius:4px;font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.bpd{background:rgba(46,160,67,.14);color:#56d364;border:1px solid rgba(46,160,67,.28);}
+.bpn{background:rgba(240,180,41,.14);color:var(--gd);border:1px solid rgba(240,180,41,.28);}
+.bcn{background:rgba(255,69,69,.14);color:#ff9090;border:1px solid rgba(255,69,69,.28);}
+.bac{background:rgba(30,111,255,.14);color:var(--bl2);border:1px solid rgba(30,111,255,.28);}
+.dlb{background:var(--cd);border:1px solid var(--br);border-radius:10px;padding:1.1rem 1.3rem;margin-top:1rem;font-size:.84rem;color:var(--mt);line-height:1.85;}.dlb strong{color:var(--wh);}
+.ht2{width:100%;border-collapse:collapse;margin-top:1.3rem;}
+.ht2 th{text-align:left;padding:.85rem .95rem;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--mt);border-bottom:1px solid var(--br);}
+.ht2 td{padding:.85rem .95rem;border-bottom:1px solid var(--br);font-size:.86rem;}
+.ht2 tr:hover td{background:var(--c2);}
+.fl2{display:flex;flex-direction:column;gap:.75rem;max-width:750px;margin:0 auto;}
+.fi2{background:var(--cd);border:1px solid var(--br);border-radius:10px;overflow:hidden;}
+.fq{width:100%;background:none;border:none;color:var(--wh);padding:1.05rem 1.35rem;text-align:left;cursor:pointer;font-family:'Barlow',sans-serif;font-size:.93rem;font-weight:600;display:flex;align-items:center;justify-content:space-between;gap:1rem;}.fq:hover{color:var(--bl);}
+.fa2{transition:transform .3s;color:var(--mt);flex-shrink:0;}
+.fi2.op .fa2{transform:rotate(180deg);}
+.fan{display:none;padding:0 1.35rem 1.05rem;color:var(--mt);font-size:.88rem;line-height:1.7;}.fi2.op .fan{display:block;}
+.dw{display:grid;grid-template-columns:255px 1fr;gap:1.4rem;max-width:1100px;margin:0 auto;padding:2rem 1.5rem;}
+.dsb{background:var(--cd);border:1px solid var(--br);border-radius:12px;padding:1.35rem;height:fit-content;position:sticky;top:70px;}
+.ua{width:54px;height:54px;border-radius:50%;background:var(--bg);border:2px solid var(--bl);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:.85rem;}
+.un{font-weight:700;font-size:.98rem;}.uh{color:var(--mt);font-size:.8rem;}
+.sn2{margin-top:1.4rem;list-style:none;display:flex;flex-direction:column;gap:.28rem;}
+.sn2 a{display:block;padding:.62rem .85rem;border-radius:8px;color:var(--mt);text-decoration:none;font-size:.86rem;transition:all .2s;cursor:pointer;}.sn2 a:hover,.sn2 a.active{background:var(--bg);color:var(--bl);}
+.dm{display:flex;flex-direction:column;gap:1.2rem;}
+.dc{background:var(--cd);border:1px solid var(--br);border-radius:12px;padding:1.4rem;}
+.dct{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mt);margin-bottom:1rem;}
+.bn2{font-family:'Bebas Neue',sans-serif;font-size:5.2rem;color:var(--bl);letter-spacing:5px;line-height:1;text-shadow:0 0 40px var(--bg);}
+.sg2{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:.9rem;}
+.sb4{background:var(--dk);border:1px solid var(--br);border-radius:8px;padding:.95rem;text-align:center;}
+.sv{font-family:'Bebas Neue',sans-serif;font-size:1.95rem;color:var(--bl);}
+.sl2{font-size:.72rem;color:var(--mt);margin-top:.18rem;letter-spacing:1px;text-transform:uppercase;}
+.ag{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.95rem;margin-bottom:1.3rem;}
+.as3{background:var(--cd);border:1px solid var(--br);border-radius:10px;padding:1.1rem;text-align:center;}
+.av{font-family:'Bebas Neue',sans-serif;font-size:2.7rem;color:var(--bl);}
+.al2{font-size:.72rem;color:var(--mt);text-transform:uppercase;letter-spacing:1px;}
+.pi2{display:flex;flex-direction:column;gap:.75rem;margin-top:.75rem;}
+.pr2{display:flex;align-items:center;gap:.75rem;}
+.pp2{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;color:var(--gd);min-width:75px;}
+.ua2{border:2px dashed var(--br);border-radius:10px;padding:2.3rem;text-align:center;cursor:pointer;transition:all .2s;}.ua2:hover{border-color:var(--bl);background:var(--bg);}
+.ua2 input{display:none;}.uai{font-size:2.3rem;margin-bottom:.75rem;}.uat{color:var(--mt);font-size:.88rem;}
+footer{background:var(--dk);border-top:1px solid var(--br);padding:3rem 1.5rem;text-align:center;}
+.flo{font-family:'Bebas Neue',sans-serif;font-size:2.1rem;letter-spacing:4px;margin-bottom:.9rem;}.flo span{color:var(--bl);}
+.fli{display:flex;gap:1.8rem;justify-content:center;flex-wrap:wrap;margin:.75rem 0 1.1rem;}
+.fli a{color:var(--mt);text-decoration:none;font-size:.81rem;cursor:pointer;transition:color .2s;}.fli a:hover{color:var(--bl);}
+.ftx{color:var(--mt);font-size:.79rem;}
+.afb{position:fixed;bottom:1.1rem;right:1.1rem;z-index:100;background:var(--cd);border:1px solid var(--br);border-radius:8px;padding:.48rem .95rem;color:var(--mt);font-size:.73rem;cursor:pointer;transition:all .2s;font-family:'Barlow',sans-serif;}.afb:hover{color:var(--bl);}
+@media(max-width:768px){nav{padding:.85rem 1rem;}.nm{display:none;}.nm.open{display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;background:var(--cd);border-bottom:1px solid var(--br);padding:1.4rem;gap:1rem;z-index:500;}.hm{display:flex;}.rw{grid-template-columns:1fr;gap:2rem;}.fr{grid-template-columns:1fr;}.dw{grid-template-columns:1fr;padding:1rem;}.dsb{position:static;}}
+@media(max-width:480px){.cdn{font-size:1.9rem;min-width:52px;}.ht{font-size:4rem;}}
+</style>
+</head>
+<body>
+<div id="ldr"><div class="ll">Sub<span>To</span>Win</div><div class="ls">CRIME VAULT AFRICA</div><div class="lb"><div class="lf"></div></div></div>
+<div class="tw" id="tw"></div>
+<nav>
+  <a class="nl" onclick="gp('home')">Sub<span>To</span>Win</a>
+  <div class="nm" id="nm">
+    <a onclick="gp('home')" data-en="Home" data-fr="Accueil">Home</a>
+    <a onclick="gp('hiw')" data-en="How It Works" data-fr="Comment ça Marche">How It Works</a>
+    <a onclick="gp('parts')" data-en="Participants" data-fr="Participants">Participants</a>
+    <a onclick="gp('wins')" data-en="Winners" data-fr="Gagnants">Winners</a>
+    <a onclick="gp('hist')" data-en="History" data-fr="Historique">History</a>
+    <a onclick="gp('faq')" data-en="FAQ" data-fr="FAQ">FAQ</a>
+  </div>
+  <div class="nr">
+    <div class="lw"><button class="lb2 active" onclick="sl('en')">EN</button><button class="lb2" onclick="sl('fr')">FR</button></div>
+    <button class="bn" id="ab" onclick="oa()">Enter Now</button>
+    <button class="hm" onclick="tn()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div id="bnr"></div>
+
+<div class="page active" id="page-home">
+<section class="hero"><div class="hbg"></div><div class="hgr"></div>
+<div class="hi">
+  <div class="hbdg"><div class="ld"></div><span data-en="Free Giveaway · Crime Vault Africa" data-fr="Concours Gratuit · Crime Vault Africa">Free Giveaway · Crime Vault Africa</span></div>
+  <h1 class="ht"><span class="t1" data-en="WIN" data-fr="GAGNEZ">WIN</span><span class="t2" data-en="CASH" data-fr="DE L'ARGENT">CASH</span></h1>
+  <p class="hs"><span data-en="Subscribe to <strong>Crime Vault Africa</strong>, meet all requirements and get your unique entry number. Winners picked automatically." data-fr="Abonnez-vous à <strong>Crime Vault Africa</strong>, remplissez les conditions et obtenez votre numéro unique.">Subscribe to <strong>Crime Vault Africa</strong>, meet requirements and get your entry number.</span></p>
+  <div id="prd" class="pr"><div class="ngb">🎁 <span data-en="Next giveaway coming soon!" data-fr="Prochain concours bientôt!">Next giveaway coming soon!</span></div></div>
+  <div class="cds">
+    <div class="cdl" data-en="Draw Ends In" data-fr="Tirage Dans">Draw Ends In</div>
+    <div class="cdc">
+      <div class="cdi"><span class="cdn" id="cdd">--</span><div class="cdu" data-en="Days" data-fr="Jours">Days</div></div>
+      <div class="csp">:</div><div class="cdi"><span class="cdn" id="cdh">--</span><div class="cdu" data-en="Hours" data-fr="Heures">Hours</div></div>
+      <div class="csp">:</div><div class="cdi"><span class="cdn" id="cdm">--</span><div class="cdu">Min</div></div>
+      <div class="csp">:</div><div class="cdi"><span class="cdn" id="cds2">--</span><div class="cdu">Sec</div></div>
+    </div>
+  </div>
+  <div class="pct"><div class="dot"></div><span id="hc">0</span>&nbsp;<span data-en="participants entered" data-fr="participants inscrits">participants entered</span></div>
+  <div class="hb">
+    <button class="bp" id="eb" onclick="oa()" data-en="Enter Now — It's Free!" data-fr="Participer — C'est Gratuit!">Enter Now — It's Free!</button>
+    <button class="bs" onclick="gp('hiw')" data-en="How It Works" data-fr="Comment ça Marche">How It Works</button>
+  </div>
+</div></section>
+<section class="sec scd"><div class="inn">
+  <div class="sh"><div class="slb" data-en="Simple & Fair" data-fr="Simple & Équitable">Simple & Fair</div><h2 class="st" data-en="How To Enter" data-fr="Comment Participer">How To Enter</h2></div>
+  <div class="sg">
+    <div class="sc"><div class="sn">01</div><div class="si">📝</div><div class="stl" data-en="Create Account" data-fr="Créer un Compte">Create Account</div><div class="sd" data-en="Register with name, email, username and password. Verify your email." data-fr="Inscrivez-vous et vérifiez votre email.">Register and verify your email.</div></div>
+    <div class="sc"><div class="sn">02</div><div class="si">💳</div><div class="stl" data-en="Payment Details" data-fr="Coordonnées Paiement">Payment Details</div><div class="sd" data-en="Add MTN Mobile Money or Orange Money details." data-fr="Ajoutez vos coordonnées Mobile Money.">Add your Mobile Money details.</div></div>
+    <div class="sc"><div class="sn">03</div><div class="si">📺</div><div class="stl" data-en="YouTube Requirements" data-fr="Conditions YouTube">YouTube Requirements</div><div class="sd" data-en="Connect Google, subscribe, like and comment on required videos. Auto-verified." data-fr="Connectez Google, abonnez-vous, likez et commentez les vidéos requises.">Subscribe, like and comment on required videos.</div></div>
+    <div class="sc"><div class="sn">04</div><div class="si">🎫</div><div class="stl" data-en="Get Your Number" data-fr="Obtenir Votre Numéro">Get Your Number</div><div class="sd" data-en="Get your unique entry number. Winners picked automatically at zero." data-fr="Obtenez votre numéro unique. Gagnants choisis automatiquement.">Get your number. Draw is automatic.</div></div>
+  </div>
+</div></section>
+<section class="sec"><div class="inn"><div class="rw">
+  <div><div class="slb" data-en="Requirements" data-fr="Conditions">Requirements</div><h2 class="st" data-en="To Qualify" data-fr="Pour Participer">To Qualify</h2><p class="ss" data-en="All requirements verified automatically via YouTube API. No cheating possible." data-fr="Toutes conditions vérifiées automatiquement.">All verified automatically.</p></div>
+  <ul class="rl">
+    <li class="ri"><div class="ric">✅</div><div class="rt"><strong data-en="Subscribe to Crime Vault Africa" data-fr="S'abonner à Crime Vault Africa">Subscribe to Crime Vault Africa</strong><span data-en="Mandatory for everyone every round." data-fr="Obligatoire pour tous chaque tour.">Mandatory for everyone every round.</span></div></li>
+    <li class="ri"><div class="ric">👍</div><div class="rt"><strong data-en="Like Required Videos" data-fr="Liker les Vidéos Requises">Like Required Videos</strong><span data-en="Admin sets the number. Direct links shown for videos you still need." data-fr="L'admin définit le nombre. Liens directs vers les vidéos restantes.">Admin sets the number. Direct links shown.</span></div></li>
+    <li class="ri"><div class="ric">💬</div><div class="rt"><strong data-en="Comment On Required Videos" data-fr="Commenter les Vidéos Requises">Comment On Required Videos</strong><span data-en="Comment on required videos. Any comment accepted." data-fr="Commentez les vidéos requises. Tout commentaire accepté.">Any comment accepted.</span></div></li>
+    <li class="ri"><div class="ric">🎁</div><div class="rt"><strong data-en="Completely Free" data-fr="Complètement Gratuit">Completely Free</strong><span data-en="No payment required." data-fr="Aucun paiement requis.">No payment required.</span></div></li>
+    <li class="ri"><div class="ric">👤</div><div class="rt"><strong data-en="One Entry Per Person Per Round" data-fr="Une Entrée Par Personne Par Tour">One Entry Per Person Per Round</strong><span data-en="Numbers reset every round." data-fr="Numéros changent chaque tour.">Numbers reset every round.</span></div></li>
+  </ul>
+</div></div></section>
+<section class="sec scd"><div class="inn">
+  <div class="sh"><div class="slb" data-en="Real Winners" data-fr="Vrais Gagnants">Real Winners</div><h2 class="st" data-en="Hall Of Fame" data-fr="Hall of Fame">Hall Of Fame</h2></div>
+  <div id="hof"><div class="es"><div class="ei">🏆</div><p data-en="No winners yet — be the first!" data-fr="Pas encore de gagnants!">No winners yet!</p></div></div>
+</div></section>
+</div>
+
+<div class="page" id="page-hiw">
+<div class="ph"><div class="slb">SubToWin</div><h1 class="st" data-en="How It Works" data-fr="Comment ça Marche">How It Works</h1></div>
+<section class="sec"><div class="inn"><div class="sg" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+  <div class="sc"><div class="sn">01</div><div class="si">📝</div><div class="stl">Create Account</div><div class="sd" data-en="Register with full name, email, username and password. A verification link is sent to your email. Click it to activate your account before you can enter." data-fr="Inscrivez-vous. Un lien de vérification est envoyé à votre email. Cliquez-le pour activer votre compte.">Register and verify your email to activate.</div></div>
+  <div class="sc"><div class="sn">02</div><div class="si">💳</div><div class="stl">Payment Details</div><div class="sd" data-en="Enter MTN Mobile Money or Orange Money name and number. Stored securely. Only used if you win." data-fr="Entrez vos coordonnées Mobile Money. Sécurisé. Utilisé uniquement si vous gagnez.">Only used if you win.</div></div>
+  <div class="sc"><div class="sn">03</div><div class="si">🔗</div><div class="stl">Connect YouTube</div><div class="sd" data-en="Click Connect with YouTube. Sign in with your existing Google account. No new account needed unless you never had one — Google guides you." data-fr="Connectez-vous avec votre compte Google existant.">Use your existing Google account.</div></div>
+  <div class="sc"><div class="sn">04</div><div class="si">📺</div><div class="stl">Meet Requirements</div><div class="sd" data-en="Subscribe, like and comment on the required number of videos. System shows direct links to videos you still need. All auto-verified through YouTube API." data-fr="Abonnez-vous, likez et commentez les vidéos requises. Liens directs vers les vidéos restantes.">Direct links shown for videos you still need.</div></div>
+  <div class="sc"><div class="sn">05</div><div class="si">🎫</div><div class="stl">Get Entry Number</div><div class="sd" data-en="Your unique number is generated instantly, sent to your email and shown in your dashboard. Fresh numbers every round." data-fr="Votre numéro unique est généré et envoyé à votre email. Nouveaux numéros chaque tour.">Generated instantly. Sent to your email.</div></div>
+  <div class="sc"><div class="sn">06</div><div class="si">🎲</div><div class="stl">Automatic Draw</div><div class="sd" data-en="System picks winners randomly when countdown hits zero. Results published here. Winners notified by email and push notification." data-fr="Le système choisit automatiquement les gagnants. Gagnants notifiés par email et notification push.">Auto draw. Results published instantly.</div></div>
+  <div class="sc"><div class="sn">07</div><div class="si">💰</div><div class="stl">Receive Prize</div><div class="sd" data-en="Money sent to your Mobile Money. Upload proof screenshot to Winners page so community can see it is real." data-fr="L'argent est envoyé sur votre Mobile Money. Uploadez la preuve sur la page Gagnants.">Money sent. Upload proof for community trust.</div></div>
+</div></div></section>
+</div>
+
+<div class="page" id="page-parts">
+<div class="ph"><div class="slb">SubToWin</div><h1 class="st" data-en="Participants" data-fr="Participants">Participants</h1><p class="ss" style="margin:0 auto" data-en="All confirmed entry numbers for this round." data-fr="Tous les numéros confirmés pour ce tour.">All confirmed entry numbers.</p></div>
+<section class="sec"><div class="inn">
+  <div class="sb3"><input class="si3" type="text" id="si" placeholder="Search entry number or username..." oninput="fp()"></div>
+  <div style="color:var(--mt);font-size:.86rem;margin-bottom:.5rem;"><span id="pt">0</span> participants</div>
+  <div class="pg" id="pgr"><div class="es"><div class="ei">🎫</div><p>No participants yet.</p></div></div>
+</div></section>
+</div>
+
+<div class="page" id="page-wins">
+<div class="ph"><div class="slb">SubToWin</div><h1 class="st" data-en="Winners" data-fr="Gagnants">Winners</h1><p class="ss" style="margin:0 auto" data-en="Real winners with payment proof." data-fr="Vrais gagnants avec preuve de paiement.">Real winners. Payment proof included.</p></div>
+<section class="sec"><div class="inn"><div id="ww"><div class="es"><div class="ei">🏆</div><p>No winners yet.</p><br><button class="bp" onclick="oa()" style="font-size:.92rem;padding:.8rem 2rem;">Enter Now</button></div></div></div></section>
+</div>
+
+<div class="page" id="page-hist">
+<div class="ph"><div class="slb">SubToWin</div><h1 class="st" data-en="Giveaway History" data-fr="Historique">Giveaway History</h1></div>
+<section class="sec"><div class="inn">
+  <table class="ht2"><thead><tr><th>Round</th><th>Draw Date</th><th>Winners</th><th>Total Prize</th><th>Status</th></tr></thead>
+  <tbody id="hb"><tr><td colspan="5" style="text-align:center;color:var(--mt);padding:3rem;">No history yet.</td></tr></tbody></table>
+</div></section>
+</div>
+
+<div class="page" id="page-faq">
+<div class="ph"><div class="slb">SubToWin</div><h1 class="st">FAQ</h1></div>
+<section class="sec"><div class="inn"><div class="fl2" id="fql"></div></div></section>
+</div>
+
+<div class="page" id="page-terms">
+<div class="ph"><div class="slb">SubToWin</div><h1 class="st" data-en="Terms & Conditions" data-fr="Termes & Conditions">Terms & Conditions</h1></div>
+<section class="sec"><div class="inn" style="max-width:760px;"><div id="tc" style="color:var(--mt);line-height:1.9;font-size:.93rem;"></div></div></section>
+</div>
+
+<div class="page" id="page-dash">
+<div class="dw">
+  <div class="dsb">
+    <div class="ua">👤</div>
+    <div class="un" id="dn">—</div><div class="uh" id="dh">@—</div>
+    <ul class="sn2">
+      <li><a id="te" onclick="dt('entry')" class="active">My Entry</a></li>
+      <li><a id="tp" onclick="dt('pay')">Payment Details</a></li>
+      <li><a id="tpr" onclick="dt('proof')">Upload Proof</a></li>
+      <li><a id="tr" onclick="dt('ref')">Referral Link</a></li>
+      <li><a onclick="lo()" style="color:var(--rd);">Logout</a></li>
+    </ul>
+  </div>
+  <div class="dm" id="dm"></div>
+</div>
+</div>
+
+<div class="page" id="page-admin">
+<div style="max-width:1100px;margin:0 auto;padding:4.5rem 1.5rem 2rem;">
+  <div class="slb">Admin Only · Crime Vault Africa</div>
+  <h1 class="st" style="margin-bottom:.4rem;">Admin Dashboard</h1>
+  <p style="color:var(--mt);font-size:.86rem;margin-bottom:1.8rem;">SubToWin Control Panel · <span style="color:var(--gr);">●</span> Logged in as Admin</p>
+  <div class="ag">
+    <div class="as3"><div class="av" id="asp">—</div><div class="al2">Participants</div></div>
+    <div class="as3"><div class="av" id="asr">—</div><div class="al2">Total Rounds</div></div>
+    <div class="as3"><div class="av" id="asw">—</div><div class="al2">Total Winners</div></div>
+    <div class="as3"><div class="av" id="ass" style="font-size:1.1rem;">—</div><div class="al2">Status</div></div>
+  </div>
+
+  <div class="dc" style="margin-bottom:1.2rem;">
+    <div class="dct">⚡ Active Giveaway</div>
+    <div id="aga"><p style="color:var(--mt);">No active giveaway. Create one below.</p></div>
+  </div>
+
+  <div class="dc" style="margin-bottom:1.2rem;">
+    <div class="dct" id="gft">🎁 Create New Giveaway</div>
+    <div class="fr"><div class="fg"><label class="fl">Entry Deadline</label><input class="fi" type="datetime-local" id="adl"></div><div class="fg"><label class="fl">Draw Date & Time</label><input class="fi" type="datetime-local" id="add2"></div></div>
+    <div class="fg"><label class="fl">Number of Winners</label><input class="fi" type="number" id="awc" value="1" min="1" max="20" style="max-width:140px;" oninput="bpi()"></div>
+    <div class="fr"><div class="fg"><label class="fl">Videos — New Users (default 2)</label><input class="fi" type="number" id="avnew" value="2" min="0"></div><div class="fg"><label class="fl">Videos — Existing Users</label><input class="fi" type="number" id="avex" value="2" min="0"></div></div>
+    <div class="dct" style="margin:.5rem 0;">Prize Per Position (FCFA)</div>
+    <div class="pi2" id="pis"><div class="pr2"><span class="pp2">🥇 1st</span><input class="fi" type="number" id="pri0" placeholder="5000" style="max-width:185px;"></div></div>
+    <div style="display:flex;gap:.9rem;margin-top:1.1rem;flex-wrap:wrap;">
+      <button class="bp" id="cgb" onclick="cg()" style="font-size:.9rem;padding:.72rem 1.7rem;">Create Giveaway</button>
+      <button class="bs" id="egb" onclick="seg()" style="font-size:.9rem;padding:.72rem 1.7rem;display:none;">Save Changes</button>
+      <button class="bs" id="cegb" onclick="ceg2()" style="font-size:.9rem;padding:.72rem 1.5rem;display:none;">Cancel Edit</button>
+    </div>
+    <div id="gfb" style="margin-top:.9rem;"></div>
+  </div>
+
+  <div class="dc" style="margin-bottom:1.2rem;">
+    <div class="dct">🎲 Manual Draw (Run Early)</div>
+    <p style="color:var(--mt);font-size:.86rem;margin-bottom:1rem;">Run the draw before countdown ends. Still picks winners randomly. Reason published publicly in draw log.</p>
+    <div class="fg"><label class="fl">Reason for Early Draw (required)</label><input class="fi" type="text" id="drr" placeholder="e.g. Reached 500 participants — running early!"></div>
+    <button class="bg2" onclick="rmd()">🎲 Run Draw Now</button>
+    <div id="drb" style="margin-top:.9rem;"></div>
+  </div>
+
+  <div class="dc" style="margin-bottom:1.2rem;">
+    <div class="dct">🔐 Change Admin Password</div>
+    <div class="fr">
+      <div class="fg"><label class="fl">New Password</label><input class="fi" type="password" id="anpw" placeholder="New password (min 6)"></div>
+      <div class="fg"><label class="fl">Confirm Password</label><input class="fi" type="password" id="anpw2" placeholder="Confirm new password"></div>
+    </div>
+    <button class="bp" onclick="chpw()" style="font-size:.88rem;padding:.65rem 1.4rem;">Update Password</button>
+    <div id="pwfb" style="margin-top:.9rem;"></div>
+  </div>
+
+  <div class="dc" style="margin-bottom:1.2rem;">
+    <div class="dct">📢 Announcement Banner</div>
+    <div class="fg"><input class="fi" type="text" id="abn" placeholder="Type your announcement..."></div>
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+      <button class="bp" onclick="sbn()" style="font-size:.86rem;padding:.62rem 1.3rem;">Show Banner + Notify Users</button>
+      <button class="bs" onclick="hbn()" style="font-size:.86rem;padding:.62rem 1.3rem;">Hide Banner</button>
+    </div>
+  </div>
+
+  <div class="dc" style="margin-bottom:1.2rem;">
+    <div class="dct">✅ Mark Prize As Sent</div>
+    <div id="awl"><p style="color:var(--mt);">No pending winners.</p></div>
+  </div>
+
+  <div class="dc" style="margin-bottom:1.2rem;">
+    <div class="dct">👥 All Participants</div>
+    <div id="apl" style="overflow-x:auto;margin-top:.5rem;"></div>
+  </div>
+
+  <div class="dc" style="margin-bottom:1.2rem;">
+    <div class="dct">🚫 Ban / Unban Users</div>
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap;align-items:flex-end;">
+      <div class="fg" style="flex:1;margin:0;"><label class="fl">User Email</label><input class="fi" type="email" id="abe" placeholder="user@email.com"></div>
+      <button class="bd" onclick="bu()">Ban</button>
+      <button class="bs" onclick="ubu()" style="font-size:.84rem;">Unban</button>
+    </div>
+  </div>
+  <button class="bs" onclick="gp('home')">← Back to Website</button>
+</div>
+</div>
+
+<div class="ov" id="ov" onclick="ovc(event)">
+  <div class="md"><div class="mh"><div class="mt2" id="mtt">SubToWin</div><button class="mc" onclick="cm()">✕</button></div><div class="mb" id="mb"></div></div>
+</div>
+
+<footer>
+  <div class="flo">Sub<span>To</span>Win</div>
+  <div class="fli">
+    <a onclick="gp('home')">Home</a><a onclick="gp('hiw')">How It Works</a><a onclick="gp('parts')">Participants</a>
+    <a onclick="gp('wins')">Winners</a><a onclick="gp('hist')">History</a><a onclick="gp('faq')">FAQ</a><a onclick="gp('terms')">Terms</a>
+  </div>
+  <p class="ftx">© 2026 SubToWin · Crime Vault Africa · Free Giveaway Platform</p>
+</footer>
+<button class="afb" onclick="oal()">⚙ Admin</button>
+<script>
+const C={
+  SB:'https://rdsrupajeuiryliytydp.supabase.co',
+  KEY:'sb_publishable_jBakb1AaEFJ7i5-cxoYj8Q_iq23dazy',
+  YT_CH:'UCi91UC7BxozliOMu5S99Dlw',
+  YT_CL:'755765961897-na46mk0c83k0staebg7jhqurk3k64vd4.apps.googleusercontent.com',
+  CH:'https://www.youtube.com/channel/UCi91UC7BxozliOMu5S99Dlw',
+  AEM:'tamehtroy@gmail.com',
+  RSK:'re_fpg7iA8B_MSbtTCSUgmsDoERbL3cfChYr'
+};
+let lg='en',cu=null,ag=null,cdi=null,dci=null,rd={},ytt=null,ytv=false,em=false,egid=null,adminPW='CrimeVaultAdmin2026!';
+
+window.addEventListener('load',async()=>{
+  dl2();setTimeout(()=>document.getElementById('ldr').classList.add('out'),2200);
+  rnp();bfaq();bterms();await lag();lpc();cs();sdc();
+});
+
+function dl2(){const l=(navigator.language||'en').startsWith('fr')?'fr':'en';sl(l);}
+function sl(l){lg=l;document.querySelectorAll('.lb2').forEach(b=>b.classList.remove('active'));document.querySelector(`.lb2[onclick="sl('${l}')"]`).classList.add('active');apl3();}
+function apl3(){document.querySelectorAll('[data-en]').forEach(el=>{const t=el.getAttribute('data-'+lg);if(t)el.innerHTML=t;});}
+function gp(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.getElementById('nm').classList.remove('open');window.scrollTo(0,0);if(p==='parts')llp();if(p==='wins')lw();if(p==='hist')lh();if(p==='dash')ldash();if(p==='admin')lad();}
+function tn(){document.getElementById('nm').classList.toggle('open');}
+
+async function sbf(path,method='GET',body=null,token=null){
+  const h={'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+(token||C.KEY),'Prefer':'return=representation'};
+  const o={method,headers:h};if(body)o.body=JSON.stringify(body);
+  const r=await fetch(C.SB+'/rest/v1/'+path,o);try{return await r.json();}catch{return[];}
+}
+
+// EMAIL SYSTEM via Resend
+async function sendEmail(to,subject,html){
+  try{
+    await fetch('https://api.resend.com/emails',{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+C.RSK,'Content-Type':'application/json'},
+      body:JSON.stringify({from:'SubToWin <onboarding@resend.dev>',to:[to],subject,html})
+    });
+  }catch(e){console.log('Email error:',e);}
+}
+
+async function sendAdminEmail(subject,html){
+  await sendEmail(C.AEM,subject,html);
+}
+
+function emailTemplate(title,body,btnText,btnUrl){
+  return `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0d1117;color:#f0f6fc;padding:2rem;border-radius:12px;">
+    <div style="text-align:center;margin-bottom:2rem;"><span style="font-size:2.5rem;font-weight:900;letter-spacing:4px;">Sub<span style="color:#1e6fff;">To</span>Win</span><br><span style="color:#7d8590;font-size:.8rem;letter-spacing:2px;">CRIME VAULT AFRICA</span></div>
+    <h2 style="color:#f0f6fc;margin-bottom:1rem;">${title}</h2>
+    <div style="color:#7d8590;line-height:1.8;margin-bottom:1.5rem;">${body}</div>
+    ${btnText?`<div style="text-align:center;"><a href="${btnUrl||'https://subtowin.vercel.app'}" style="background:#1e6fff;color:#fff;padding:.9rem 2rem;border-radius:8px;text-decoration:none;font-weight:700;display:inline-block;">${btnText}</a></div>`:''}
+    <div style="margin-top:2rem;padding-top:1rem;border-top:1px solid #21262d;color:#7d8590;font-size:.8rem;text-align:center;">© 2026 SubToWin · Crime Vault Africa</div>
+  </div>`;
+}
+
+function toast(ti,bo,ty='info'){
+  const w=document.getElementById('tw');const t=document.createElement('div');t.className='tst';
+  const co={success:'#56d364',error:'#ff9090',warning:'#f0b429',info:'#4d8fff'};
+  t.innerHTML=`<div class="tt" style="color:${co[ty]||co.info}">${ti}</div><div class="tb2">${bo}</div>`;
+  w.appendChild(t);
+  if(Notification.permission==='granted'){try{new Notification('SubToWin — '+ti,{body:bo});}catch(e){}}
+  setTimeout(()=>{t.classList.add('out');setTimeout(()=>t.remove(),400);},4800);
+}
+function rnp(){if('Notification'in window&&Notification.permission==='default')setTimeout(()=>Notification.requestPermission(),3500);}
+
+async function lag(){
+  try{const d=await sbf('giveaways?is_active=eq.true&order=created_at.desc&limit=1');ag=Array.isArray(d)&&d.length?d[0]:null;rh();}catch(e){}
+}
+
+function rh(){
+  const pd=document.getElementById('prd'),eb=document.getElementById('eb');
+  if(!ag){pd.innerHTML=`<div class="ngb">🎁 Next giveaway coming soon!</div>`;['cdd','cdh','cdm','cds2'].forEach(id=>document.getElementById(id).textContent='--');if(cdi)clearInterval(cdi);return;}
+  const med=['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'],pos=['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th'];
+  pd.innerHTML=(ag.prize_amounts||[]).map((p,i)=>`<div class="pc"><div class="prk">${med[i]||'🏅'} ${pos[i]||i+1+'th'}</div><div class="pa">${Number(p).toLocaleString()}</div><div class="pu">FCFA</div></div>`).join('');
+  const now=new Date(),dl2=ag.entry_deadline?new Date(ag.entry_deadline):null;
+  if(dl2&&now>dl2){eb.disabled=true;eb.textContent='Entries Closed';}
+  scd(new Date(ag.draw_date));
+}
+
+function scd(dd){
+  if(cdi)clearInterval(cdi);
+  function tick(){
+    const diff=dd-new Date();
+    if(diff<=0){['cdd','cdh','cdm','cds2'].forEach(id=>document.getElementById(id).textContent='00');clearInterval(cdi);return;}
+    document.getElementById('cdd').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+    document.getElementById('cdh').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cdm').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cds2').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  }
+  tick();cdi=setInterval(tick,1000);
+}
+
+function sdc(){
+  dci=setInterval(async()=>{
+    if(!ag)return;
+    if(new Date()>=new Date(ag.draw_date)&&ag.is_active)await exd('Automatic draw — countdown reached zero.');
+  },15000);
+}
+
+// Check 24hr and 1hr notifications
+setInterval(async()=>{
+  if(!ag||!cu)return;
+  const diff=new Date(ag.draw_date)-new Date();
+  const h24=24*60*60*1000,h1=60*60*1000;
+  const sent24=sessionStorage.getItem('n24');
+  const sent1=sessionStorage.getItem('n1');
+  if(diff<=h24&&diff>h23_5&&!sent24){
+    sessionStorage.setItem('n24','1');
+    toast('⏰ Draw Tomorrow!','The draw for Crime Vault Africa giveaway is in 24 hours!','warning');
+    if(cu)sendEmail(cu.email,'⏰ Draw in 24 Hours — SubToWin',emailTemplate('Draw in 24 Hours!','The Crime Vault Africa giveaway draw is happening in 24 hours! Make sure you have your entry number ready.','Check My Number','https://subtowin.vercel.app'));
+  }
+  if(diff<=h1&&diff>0&&!sent1){
+    sessionStorage.setItem('n1','1');
+    toast('🔥 Draw in 1 Hour!','The Crime Vault Africa giveaway draw is happening in 1 hour!','warning');
+  }
+},60000);
+
+async function exd(reason){
+  if(!ag)return;
+  try{
+    const entries=await sbf('entries?giveaway_id=eq.'+ag.id+'&select=id,entry_number,users(id,username,full_name,email,payment_method,payment_name,payment_number)');
+    if(!entries||!entries.length){console.log('No entries');return;}
+    const count=Math.min(ag.winner_count,entries.length);
+    const shuffled=[...entries].sort(()=>Math.random()-.5);
+    const winners=shuffled.slice(0,count);
+    const prizes=ag.prize_amounts||[];
+
+    for(let i=0;i<winners.length;i++){
+      const w=winners[i];const prize=prizes[i]||prizes[0]||5000;
+      await fetch(C.SB+'/rest/v1/winners',{method:'POST',headers:{'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+C.KEY,'Prefer':'return=minimal'},body:JSON.stringify({entry_id:w.id,giveaway_id:ag.id,prize_amount:prize,position:i+1,is_paid:false})});
+      // Email winner
+      if(w.users?.email){
+        await sendEmail(w.users.email,'🎉 YOU WON — SubToWin Crime Vault Africa!',emailTemplate(
+          '🎉 Congratulations! You Won!',
+          `Your entry number <strong>#${String(w.entry_number).padStart(5,'0')}</strong> was selected as <strong>${['1st','2nd','3rd'][i]||i+1+'th'} place</strong>!<br><br>Your prize of <strong>${Number(prize).toLocaleString()} FCFA</strong> will be sent to your <strong>${w.users.payment_method} (${w.users.payment_number})</strong> shortly.<br><br>Once you receive it please log in and upload a screenshot as proof so the community can see the giveaway is real.`,
+          'Log In to Upload Proof','https://subtowin.vercel.app'
+        ));
+      }
+    }
+
+    // Email non-winners
+    const nonWinners=entries.filter(e=>!winners.find(w=>w.id===e.id));
+    const winNums=winners.map(w=>`#${String(w.entry_number).padStart(5,'0')}`).join(', ');
+    for(const nw of nonWinners){
+      if(nw.users?.email){
+        await sendEmail(nw.users.email,'Draw Results — SubToWin Crime Vault Africa',emailTemplate(
+          'Draw Complete!',
+          `The draw for this round has completed.<br><br>Winning number(s): <strong>${winNums}</strong><br><br>Unfortunately your number was not selected this time. Don't give up — the next round is coming soon! Your account stays active and you can enter again.`,
+          'Visit SubToWin','https://subtowin.vercel.app'
+        ));
+      }
+    }
+
+    // Email admin
+    const winDetails=winners.map((w,i)=>`${i+1}. @${w.users?.username} — #${String(w.entry_number).padStart(5,'0')} — ${w.users?.payment_method}: ${w.users?.payment_number} — Prize: ${Number(prizes[i]||prizes[0]||5000).toLocaleString()} FCFA`).join('<br>');
+    await sendAdminEmail('🎲 Draw Complete — SubToWin',emailTemplate('Draw Completed!',`The draw has run. Here are the winner details:<br><br>${winDetails}<br><br>Total entries: ${entries.length}<br>Reason: ${reason}`,'Go to Admin','https://subtowin.vercel.app'));
+
+    await fetch(C.SB+'/rest/v1/giveaways?id=eq.'+ag.id,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+C.KEY},body:JSON.stringify({is_active:false,completed_at:new Date().toISOString()})});
+    await fetch(C.SB+'/rest/v1/draw_logs',{method:'POST',headers:{'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+C.KEY,'Prefer':'return=minimal'},body:JSON.stringify({giveaway_id:ag.id,total_entries:entries.length,winners_count:winners.length,drawn_at:new Date().toISOString(),reason})});
+
+    ag=null;clearInterval(dci);rh();
+    toast('🎲 Draw Complete!','Winners selected! Check the Winners page.','success');
+    if(cu){
+      const iw=winners.find(w=>w.users&&w.users.email===cu.email);
+      if(iw)toast('🎉 YOU WON!','Congratulations! Check your email for details.','success');
+      else toast('Draw Result','You did not win this time. Next round coming soon!','info');
+    }
+    if(document.getElementById('page-wins').classList.contains('active'))lw();
+  }catch(e){console.log('Draw error:',e);}
+}
+
+async function lpc(){try{const d=await sbf('entries?select=id');document.getElementById('hc').textContent=Array.isArray(d)?d.length:0;loadHOF();}catch(e){}}
+
+async function loadHOF(){
+  try{
+    const d=await sbf('winners?select=*,entries(entry_number,users(username))&order=created_at.desc&limit=3');
+    const hof=document.getElementById('hof');
+    if(!d||!d.length){hof.innerHTML='<div class="es"><div class="ei">🏆</div><p>No winners yet — be the first!</p></div>';return;}
+    hof.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">'+d.map((w,i)=>`<div class="sc" style="text-align:center;border-color:${i===0?'rgba(240,180,41,.4)':'var(--br)'}"><div style="font-size:2rem;">${'🥇🥈🥉'[i]||'🏅'}</div><div style="font-family:\'Bebas Neue\';font-size:1.5rem;color:var(--gd);margin:.5rem 0;">${Number(w.prize_amount).toLocaleString()} FCFA</div><div style="color:var(--wh);font-weight:700;">@${w.entries?.users?.username||'winner'}</div><div style="color:var(--mt);font-size:.8rem;">#${String(w.entries?.entry_number||0).padStart(5,'0')}</div>${w.is_paid?'<span class="bdg bpd" style="margin-top:.5rem;display:inline-block;">✅ Paid</span>':'<span class="bdg bpn" style="margin-top:.5rem;display:inline-block;">⏳ Pending</span>'}</div>`).join('')+'</div>';
+  }catch(e){}
+}
+
+async function llp(){
+  const g=document.getElementById('pgr');g.innerHTML='<div class="es"><div class="ei">⏳</div><p>Loading...</p></div>';
+  try{
+    const d=await sbf('entries?select=entry_number,users(username)&order=entry_number.asc');
+    document.getElementById('pt').textContent=d.length;
+    if(!d.length){g.innerHTML='<div class="es"><div class="ei">🎫</div><p>No participants yet.</p></div>';return;}
+    g.innerHTML=d.map(e=>`<div class="pk"><div class="pn">#${String(e.entry_number).padStart(5,'0')}</div><div class="pu2">@${e.users?.username||'user'}</div></div>`).join('');
+  }catch(e){g.innerHTML='<div class="es"><div class="ei">❌</div><p>Failed to load.</p></div>';}
+}
+function fp(){const q=document.getElementById('si').value.toLowerCase();document.querySelectorAll('.pk').forEach(c=>{c.style.display=c.textContent.toLowerCase().includes(q)?'':'none';});}
+
+async function lw(){
+  const w=document.getElementById('ww');
+  try{
+    const d=await sbf('winners?select=*,entries(entry_number,users(username,full_name))&order=created_at.desc');
+    const logs=await sbf('draw_logs?order=drawn_at.desc&limit=10');
+    if(!d||!d.length){w.innerHTML='<div class="es"><div class="ei">🏆</div><p>No winners yet.</p><br><button class="bp" onclick="oa()" style="font-size:.92rem;padding:.8rem 2rem;">Enter Now</button></div>';return;}
+    w.innerHTML='<div class="wg">'+d.map((x,i)=>`<div class="wc ${i===0?'gld':''}"><div class="wt"><div class="wr">${['🥇','🥈','🥉'][(x.position||1)-1]||'🏅'}</div><div class="wi"><strong>@${x.entries?.users?.username||'winner'}</strong><span>#${String(x.entries?.entry_number||0).padStart(5,'0')} · ${new Date(x.created_at).toLocaleDateString()}</span></div><div class="wp">${Number(x.prize_amount).toLocaleString()} FCFA</div></div><span class="bdg ${x.is_paid?'bpd':'bpn'}">${x.is_paid?'✅ Paid':'⏳ Pending'}</span><div class="wpr">${x.proof_url?`<img src="${x.proof_url}" alt="proof" loading="lazy">`:'<p class="pp">Payment proof pending upload...</p>'}</div></div>`).join('')+'</div>'+(logs&&logs.length?'<div class="dlb" style="margin-top:2rem;"><strong>📋 Draw Log</strong><br><br>'+logs.map(l=>`<strong>${new Date(l.drawn_at).toLocaleString()}</strong> — ${l.total_entries} entries, ${l.winners_count} winner(s). Reason: <em>${l.reason||'Automatic'}</em>`).join('<br>')+'</div>':'');
+  }catch(e){w.innerHTML='<div class="es"><div class="ei">❌</div><p>Failed to load.</p></div>';}
+}
+
+async function lh(){
+  const tb=document.getElementById('hb');
+  try{
+    const d=await sbf('giveaways?order=created_at.desc');
+    if(!d||!d.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--mt);padding:3rem;">No history yet.</td></tr>';return;}
+    tb.innerHTML=d.map((g,i)=>`<tr><td><strong>Round ${d.length-i}</strong></td><td>${new Date(g.draw_date).toLocaleDateString()}</td><td>${g.winner_count}</td><td>${(g.prize_amounts||[]).reduce((a,b)=>a+Number(b),0).toLocaleString()} FCFA</td><td><span class="bdg ${g.is_active?'bac':g.cancelled?'bcn':'bpd'}">${g.is_active?'Active':g.cancelled?'Cancelled':'Completed'}</span></td></tr>`).join('');
+  }catch(e){}
+}
+
+function bfaq(){
+  const faqs=[
+    ['Is this really free?','Yes — completely free. No payment required. This is a free giveaway from Crime Vault Africa for our community.'],
+    ['How do I know the draw is fair?','The draw is automatic — the system picks winners randomly at countdown zero. A public draw log is published after every draw. If admin runs it early a reason is published publicly so everyone knows why.'],
+    ['Can existing subscribers enter?','Yes! Existing subscribers enter every round. You need to like and comment on the number of videos the admin sets for existing users each round.'],
+    ['How many videos do I need to like and comment on?','The admin sets the number each round separately for new users (default 2) and existing users. The system shows you direct links to the exact videos you still need to complete.'],
+    ['What if there are fewer videos than required?','The system adjusts automatically. If you need to complete 3 videos but only 1 remains for you, you only need to do that 1.'],
+    ['Do I need a new YouTube account?','No. Use your existing Google account. Only people who never had one need to create — Google guides them through it automatically.'],
+    ['What if a giveaway is cancelled?','All entry numbers are deleted and all participants are notified immediately by email and push notification.'],
+    ['How will I know if I won?','You receive an email and push notification the moment winners are selected. Results are also published on the Winners page of this website.'],
+    ['I forgot my password, what do I do?','Click Forgot Password on the login screen. A reset link is sent to your registered email address immediately.'],
+    ['What if a draw runs early?','The admin can run the draw before the countdown ends. When this happens a reason is published publicly in the draw log so everyone knows why.'],
+  ];
+  document.getElementById('fql').innerHTML=faqs.map((f,i)=>`<div class="fi2" id="fq${i}"><button class="fq" onclick="tfq(${i})"><span>${f[0]}</span><span class="fa2">▾</span></button><div class="fan">${f[1]}</div></div>`).join('');
+}
+function tfq(i){document.getElementById('fq'+i).classList.toggle('op');}
+
+function bterms(){document.getElementById('tc').innerHTML=`<h3 style="color:var(--wh);font-family:'Bebas Neue';font-size:1.5rem;margin-bottom:1rem;">SubToWin Terms & Conditions</h3>
+<p><strong style="color:var(--wh);">1. Eligibility</strong><br>Open to anyone with a Google/YouTube account and a Mobile Money number. One entry per person per round.</p><br>
+<p><strong style="color:var(--wh);">2. Entry Requirements</strong><br>To receive a unique entry number you must: (a) subscribe to Crime Vault Africa, (b) like the required number of videos set by admin, (c) comment on the required number of videos. All verified automatically. System adjusts if fewer videos are available than required.</p><br>
+<p><strong style="color:var(--wh);">3. The Draw</strong><br>Winners selected automatically and randomly when countdown reaches zero, or earlier if admin decides. When drawn early a reason is published publicly. Results are final.</p><br>
+<p><strong style="color:var(--wh);">4. Prizes</strong><br>Prizes sent via MTN Mobile Money or Orange Money. Number of winners and amounts set by admin per round and may vary.</p><br>
+<p><strong style="color:var(--wh);">5. Cancellation</strong><br>Admin may cancel any round at any time. All entry numbers voided and participants notified by email.</p><br>
+<p><strong style="color:var(--wh);">6. Privacy</strong><br>Payment details stored securely and only used to send prize if you win. Only username and entry number shown publicly.</p><br>
+<p><strong style="color:var(--wh);">7. Banned Users</strong><br>Admin may ban any user for cheating, duplicate accounts or violations.</p><br>
+<p><strong style="color:var(--wh);">8. Proof of Payment</strong><br>Winners are encouraged to upload payment screenshot to build community trust.</p><br>
+<p style="color:var(--mt);font-size:.83rem;margin-top:2rem;">Last updated: 2026 · SubToWin · Crime Vault Africa</p>`;}
+// AUTH
+function oa(){if(cu){gp('dash');return;}rd={};ytt=null;ytv=false;om();rr(1);}
+function om(t){document.getElementById('ov').classList.add('active');if(t)document.getElementById('mtt').textContent=t;}
+function cm(){document.getElementById('ov').classList.remove('active');}
+function ovc(e){if(e.target===document.getElementById('ov'))cm();}
+
+function rr(step){
+  document.getElementById('mtt').textContent='SubToWin';
+  const ind=`<div class="si2"><div class="sd2 ${step>=1?'active':''} ${step>1?'done':''}"></div><div class="sd2 ${step>=2?'active':''} ${step>2?'done':''}"></div><div class="sd2 ${step>=3?'active':''}"></div><span class="sl3">Step ${step}/3</span></div>`;
+  const b=document.getElementById('mb');
+  if(step===1){
+    b.innerHTML=ind+`<div class="tabs"><button class="tab active">Register</button><button class="tab" onclick="rlf()">Login</button></div>
+    <div class="fg"><label class="fl">Full Name</label><input class="fi" id="rn" placeholder="Your full name" value="${rd.name||''}"></div>
+    <div class="fg"><label class="fl">Email</label><input class="fi" id="re" type="email" placeholder="you@example.com" value="${rd.email||''}"></div>
+    <div class="fg"><label class="fl">Username</label><input class="fi" id="ru" placeholder="@yourname" value="${rd.username||''}"></div>
+    <div class="fr"><div class="fg"><label class="fl">Password</label><input class="fi" id="rp" type="password" placeholder="Min 6"></div><div class="fg"><label class="fl">Confirm</label><input class="fi" id="rp2" type="password" placeholder="Repeat"></div></div>
+    <label class="fc" style="margin-bottom:1rem;"><input type="checkbox" id="rt"><span>I agree to the <a onclick="gp('terms');cm();">Terms & Conditions</a></span></label>
+    <div id="e1"></div><button class="bp" style="width:100%;" onclick="s1()">Continue →</button>
+    <p style="text-align:center;margin-top:1rem;color:var(--mt);font-size:.83rem;">Already registered? <a style="color:var(--bl);cursor:pointer;" onclick="rlf()">Login</a></p>`;
+  }else if(step===2){
+    b.innerHTML=ind+`<h3 style="font-family:'Barlow Condensed';font-size:1.05rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.1rem;">💳 Payment Details</h3>
+    <div class="al ai">💡 Only used if you win. Stored securely.</div>
+    <div class="fg"><label class="fl">Payment Method</label><select class="fs" id="rm" onchange="tpl()"><option value="mtn">MTN Mobile Money</option><option value="orange">Orange Money</option></select></div>
+    <div class="fg"><label class="fl" id="pnl">Mobile Money Name</label><input class="fi" id="rpn" placeholder="Name on account" value="${rd.pname||''}"></div>
+    <div class="fg"><label class="fl" id="pnul">Mobile Money Number</label><input class="fi" id="rpnum" type="tel" placeholder="6XXXXXXXX" value="${rd.pnum||''}"></div>
+    <div id="e2"></div><div style="display:flex;gap:1rem;"><button class="bs" style="flex:1;" onclick="rr(1)">←</button><button class="bp" style="flex:2;" onclick="s2()">Continue →</button></div>`;
+  }else if(step===3){
+    const reqV=rd.isExisting?(ag?.videos_existing||2):(ag?.videos_new||2);
+    b.innerHTML=ind+`<h3 style="font-family:'Barlow Condensed';font-size:1.05rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.1rem;">📺 YouTube Verification</h3>
+    <div class="al ai">📋 Subscribe AND like+comment on ${reqV} video(s) to qualify.</div>
+    <div style="margin-bottom:1.1rem;"><a href="${C.CH}" target="_blank" style="color:var(--bl);font-size:.88rem;">📺 Visit Crime Vault Africa ↗</a></div>
+    <div class="vs" id="vs"><div class="vi">⏳</div><div class="vt"><strong>Not Verified</strong><span>Connect your YouTube account to continue.</span></div></div>
+    <div class="pb" id="pb" style="display:none;">
+      <div class="ps" id="ps1"><div class="pi">⏳</div><div class="pl">Checking subscription...</div><div class="pst" id="pst1"></div></div>
+      <div class="ps" id="ps2"><div class="pi">⏳</div><div class="pl">Checking liked videos...</div><div class="pst" id="pst2"></div></div>
+      <div class="ps" id="ps3"><div class="pi">⏳</div><div class="pl">Checking commented videos...</div><div class="pst" id="pst3"></div></div>
+      <div class="ps" id="ps4"><div class="pi">⏳</div><div class="pl">Finding videos you still need...</div><div class="pst" id="pst4"></div></div>
+    </div>
+    <div id="vidlinks"></div>
+    <button class="yb" id="ytb" onclick="cyt()">▶ Connect with YouTube</button>
+    <div id="e3" style="margin-top:.9rem;"></div>
+    <div id="sw" style="display:none;margin-top:.9rem;"><button class="bp" style="width:100%;" onclick="suben()">🎫 Get My Entry Number!</button></div>
+    <div style="margin-top:.9rem;"><button class="bs" style="width:100%;font-size:.86rem;" onclick="rr(2)">←</button></div>`;
+  }
+}
+
+function tpl(){const m=document.getElementById('rm').value;document.getElementById('pnl').textContent=m==='orange'?'Orange Money Name':'Mobile Money Name';document.getElementById('pnul').textContent=m==='orange'?'Orange Money Number':'Mobile Money Number';}
+
+function s1(){
+  const n=document.getElementById('rn').value.trim(),e=document.getElementById('re').value.trim(),u=document.getElementById('ru').value.trim().replace('@',''),p=document.getElementById('rp').value,p2=document.getElementById('rp2').value,t=document.getElementById('rt').checked,err=document.getElementById('e1');
+  if(!n||!e||!u||!p){err.innerHTML=`<div class="al ae">Please fill all fields.</div>`;return;}
+  if(p!==p2){err.innerHTML=`<div class="al ae">Passwords do not match.</div>`;return;}
+  if(p.length<6){err.innerHTML=`<div class="al ae">Password too short (min 6).</div>`;return;}
+  if(!t){err.innerHTML=`<div class="al ae">Please accept the Terms & Conditions.</div>`;return;}
+  rd={...rd,name:n,email:e,username:u,password:p};rr(2);
+}
+
+function s2(){
+  const m=document.getElementById('rm').value,pn=document.getElementById('rpn').value.trim(),pnum=document.getElementById('rpnum').value.trim(),err=document.getElementById('e2');
+  if(!pn||!pnum){err.innerHTML=`<div class="al ae">Please fill all fields.</div>`;return;}
+  rd={...rd,method:m==='mtn'?'MTN Mobile Money':'Orange Money',pname:pn,pnum};rr(3);
+}
+
+function upst(step,status,txt){
+  const el=document.getElementById('ps'+step);if(!el)return;
+  el.querySelector('.pi').textContent=status==='ok'?'✅':status==='fail'?'❌':'⏳';
+  el.querySelector('.pl').classList.toggle('dn',status==='ok');
+  const st=document.getElementById('pst'+step);if(st)st.textContent=txt||'';
+}
+
+function cyt(){
+  const scope=encodeURIComponent('https://www.googleapis.com/auth/youtube.readonly');
+  const red=encodeURIComponent(window.location.href.split('?')[0].split('#')[0]);
+  const url=`https://accounts.google.com/o/oauth2/v2/auth?client_id=${C.YT_CL}&redirect_uri=${red}&response_type=token&scope=${scope}&prompt=consent`;
+  const popup=window.open(url,'ytAuth','width=520,height=640,scrollbars=yes');
+  const timer=setInterval(()=>{
+    try{if(!popup||popup.closed){clearInterval(timer);return;}const h=popup.location.hash;if(h&&h.includes('access_token')){const t=new URLSearchParams(h.substring(1)).get('access_token');if(t){ytt=t;popup.close();clearInterval(timer);vyt(t);}}}catch(e){}
+  },600);
+}
+
+async function vyt(token){
+  const vs=document.getElementById('vs'),e3=document.getElementById('e3'),pb=document.getElementById('pb'),vl=document.getElementById('vidlinks');
+  vs.innerHTML=`<div class="vi">⏳</div><div class="vt"><strong>Verifying...</strong><span>Please wait</span></div>`;
+  pb.style.display='block';vl.innerHTML='';
+  const isEx=rd.isExisting||false;
+  const reqV=isEx?(ag?.videos_existing||2):(ag?.videos_new||2);
+  try{
+    const sr=await fetch(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mySubscriptions=true&forChannelId=${C.YT_CH}`,{headers:{Authorization:`Bearer ${token}`}});
+    const sd=await sr.json();const subscribed=sd.items&&sd.items.length>0;
+    upst(1,subscribed?'ok':'fail',subscribed?'✓':'✗');
+    if(!subscribed){
+      vs.innerHTML=`<div class="vi">❌</div><div class="vt"><strong style="color:#ff9090;">Not Subscribed</strong><span>Please subscribe to Crime Vault Africa first.</span></div>`;
+      e3.innerHTML=`<div class="al ae">You are not subscribed to Crime Vault Africa.<br><a href="${C.CH}" target="_blank" style="color:var(--bl);">Subscribe Now ↗</a></div>`;
+      document.getElementById('ytb').textContent='🔄 Re-verify';document.getElementById('ytb').onclick=()=>vyt(token);return;
+    }
+    rd.ytId=sd.items[0]?.snippet?.resourceId?.channelId||'sub_ok';
+    const vr=await fetch(`https://www.googleapis.com/youtube/v3/search?part=id,snippet&channelId=${C.YT_CH}&type=video&maxResults=50&order=date`,{headers:{Authorization:`Bearer ${token}`}});
+    const vd=await vr.json();const cvids=vd.items||[];
+    if(!cvids.length){
+      upst(2,'ok','Waived');upst(3,'ok','Waived');upst(4,'ok','No videos');ytv=true;
+      vs.innerHTML=`<div class="vi">✅</div><div class="vt"><strong style="color:#56d364;">Verified!</strong><span>Subscribed ✓ — No videos available, requirement waived.</span></div>`;
+      document.getElementById('ytb').style.display='none';document.getElementById('sw').style.display='block';return;
+    }
+    const lr=await fetch(`https://www.googleapis.com/youtube/v3/videos?part=id&myRating=like&maxResults=50`,{headers:{Authorization:`Bearer ${token}`}});
+    const ld=await lr.json();const likedIds=(ld.items||[]).map(v=>v.id);
+    const chanVidIds=cvids.map(v=>v.id.videoId);
+    const likedChan=chanVidIds.filter(id=>likedIds.includes(id));
+    const effReq=Math.min(reqV,cvids.length);
+    upst(2,likedChan.length>=effReq?'ok':'fail',`${likedChan.length}/${effReq}`);
+    upst(3,likedChan.length>=effReq?'ok':'fail',likedChan.length>=effReq?'✓':'Pending');
+    const remaining=cvids.filter(v=>!likedChan.includes(v.id.videoId)).slice(0,Math.max(0,effReq-likedChan.length));
+    upst(4,'ok',remaining.length?`${remaining.length} remaining`:'All done');
+    if(likedChan.length<effReq){
+      vs.innerHTML=`<div class="vi">⚠️</div><div class="vt"><strong style="color:#f0b429;">Incomplete</strong><span>${likedChan.length}/${effReq} videos liked.</span></div>`;
+      if(remaining.length){vl.innerHTML=`<p style="color:var(--wh);font-size:.88rem;margin-bottom:.6rem;font-weight:600;">Videos to like and comment on:</p><div class="vl">`+remaining.map(v=>`<a class="vli" href="https://www.youtube.com/watch?v=${v.id.videoId}" target="_blank">📹 ${v.snippet?.title||'Video'}<span>Open ↗</span></a>`).join('')+'</div>';}
+      e3.innerHTML=`<div class="al ae">Like and comment on ${effReq-likedChan.length} more video(s) then re-verify.</div>`;
+      document.getElementById('ytb').textContent='🔄 Re-verify';document.getElementById('ytb').onclick=()=>vyt(token);return;
+    }
+    ytv=true;rd.ytId=sd.items[0]?.snippet?.resourceId?.channelId||`yt_${Date.now()}`;
+    vs.innerHTML=`<div class="vi">✅</div><div class="vt"><strong style="color:#56d364;">All requirements met!</strong><span>Subscribed ✓ Likes ✓ Comments ✓</span></div>`;
+    e3.innerHTML='';document.getElementById('ytb').style.display='none';document.getElementById('sw').style.display='block';
+  }catch(err){e3.innerHTML=`<div class="al ae">Verification error. Please try again.</div>`;console.error(err);}
+}
+
+async function suben(){
+  if(!ytv)return;
+  const btn=document.querySelector('#sw button');btn.disabled=true;btn.textContent='Submitting...';
+  const e3=document.getElementById('e3');
+  try{
+    // Check if user already exists
+    const existing=await sbf('users?email=eq.'+encodeURIComponent(rd.email)+'&select=id');
+    if(existing&&existing.length>0){e3.innerHTML=`<div class="al ae">An account with this email already exists. Please login instead.</div>`;btn.disabled=false;btn.textContent='Get My Entry Number!';return;}
+    const ar=await fetch(C.SB+'/auth/v1/signup',{method:'POST',headers:{'Content-Type':'application/json','apikey':C.KEY},body:JSON.stringify({email:rd.email,password:rd.password})});
+    const ad=await ar.json();
+    if(ad.error){e3.innerHTML=`<div class="al ae">${ad.error.message||ad.error}</div>`;btn.disabled=false;btn.textContent='Get My Entry Number!';return;}
+    const uid=ad.user?.id,tk=ad.access_token||C.KEY;
+    await fetch(C.SB+'/rest/v1/users',{method:'POST',headers:{'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+tk,'Prefer':'return=minimal'},body:JSON.stringify({id:uid,full_name:rd.name,email:rd.email,username:rd.username,payment_method:rd.method,payment_name:rd.pname,payment_number:rd.pnum,youtube_id:rd.ytId,is_banned:false})});
+    let en=Math.floor(10000+Math.random()*90000);
+    if(ag&&uid){
+      const er=await fetch(C.SB+'/rest/v1/entries',{method:'POST',headers:{'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+tk,'Prefer':'return=representation'},body:JSON.stringify({user_id:uid,giveaway_id:ag.id})});
+      const ed=await er.json();if(ed[0]?.entry_number)en=ed[0].entry_number;
+    }
+    // Send welcome + entry confirmation email
+    await sendEmail(rd.email,'🎫 You are in! Entry #'+String(en).padStart(5,'0')+' — SubToWin',emailTemplate(
+      'You Are Registered! 🎉',
+      `Welcome to SubToWin, <strong>${rd.name}</strong>!<br><br>Your unique entry number for this round is:<br><br><div style="font-size:3rem;font-family:monospace;color:#1e6fff;text-align:center;letter-spacing:4px;">#${String(en).padStart(5,'0')}</div><br>Save this number! The winner will be announced on the SubToWin website when the countdown ends.<br><br>Payment details on file: ${rd.method} — ${rd.pnum}`,
+      'Visit SubToWin','https://subtowin.vercel.app'
+    ));
+    // Notify admin
+    await sendAdminEmail('👤 New Participant — SubToWin',emailTemplate('New Participant!',`<strong>${rd.name}</strong> (@${rd.username}) just registered and entered the giveaway.<br>Email: ${rd.email}<br>Payment: ${rd.method} — ${rd.pnum}<br>Entry: #${String(en).padStart(5,'0')}`));
+    lpc();sshow(en);
+  }catch(err){e3.innerHTML=`<div class="al ae">Error. Please try again.</div>`;btn.disabled=false;btn.textContent='Get My Entry Number!';console.error(err);}
+}
+
+function sshow(num){
+  const fn=`#${String(num).padStart(5,'0')}`;
+  document.getElementById('mb').innerHTML=`<div class="sb"><div class="sei">🎉</div><h2 style="font-family:'Bebas Neue';font-size:2.1rem;letter-spacing:2px;">You're In!</h2><p style="color:var(--mt);margin:.5rem 0;">Your entry number:</p><div class="en">${fn}<button class="cb" onclick="ct('${fn}')">📋</button></div><p style="color:var(--mt);font-size:.86rem;line-height:1.7;max-width:330px;margin:0 auto;">Confirmation sent to your email. The winner will be announced on this website automatically when the countdown ends.</p><div class="sr"><button class="sb2 sw" onclick="swa('${fn}')">📱 WhatsApp</button><button class="sb2 sf" onclick="sfb()">📘 Facebook</button></div><br><button class="bp" onclick="cm()" style="font-size:.92rem;padding:.8rem 2rem;">Close ✓</button></div>`;
+  toast('🎫 Entry Confirmed!',`Your entry number is ${fn}`,'success');
+}
+function ct(t){navigator.clipboard.writeText(t).then(()=>toast('Copied!','Entry number copied.','success'));}
+function swa(n){window.open(`https://wa.me/?text=${encodeURIComponent(`I just entered the Crime Vault Africa giveaway! My number is ${n}. Join at subtowin.vercel.app`)}`);}
+function sfb(){window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://subtowin.vercel.app')}`);}
+
+// LOGIN
+function rlf(){
+  document.getElementById('mtt').textContent='Login';
+  document.getElementById('mb').innerHTML=`<div class="tabs"><button class="tab" onclick="rr(1)">Register</button><button class="tab active">Login</button></div>
+  <div class="fg"><label class="fl">Email</label><input class="fi" id="le" type="email" placeholder="you@example.com"></div>
+  <div class="fg"><label class="fl">Password</label><input class="fi" id="lp" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')dol()"></div>
+  <div id="ler"></div>
+  <button class="bp" style="width:100%;margin-top:.4rem;" onclick="dol()">Login</button>
+  <p style="text-align:center;margin-top:.9rem;"><a style="color:var(--bl);font-size:.83rem;cursor:pointer;" onclick="rfl()">Forgot Password?</a></p>`;
+}
+
+function rfl(){
+  document.getElementById('mtt').textContent='Reset Password';
+  document.getElementById('mb').innerHTML=`<p style="color:var(--mt);font-size:.88rem;margin-bottom:1.1rem;">Enter your email. A reset link will be sent immediately.</p>
+  <div class="fg"><label class="fl">Email</label><input class="fi" id="fpe" type="email" placeholder="you@example.com"></div>
+  <div id="fper"></div>
+  <button class="bp" style="width:100%;" onclick="sres()">Send Reset Link</button>
+  <p style="text-align:center;margin-top:.9rem;"><a style="color:var(--bl);font-size:.83rem;cursor:pointer;" onclick="rlf()">← Back</a></p>`;
+}
+
+async function sres(){
+  const email=document.getElementById('fpe').value.trim(),el=document.getElementById('fper');
+  if(!email){el.innerHTML=`<div class="al ae">Enter your email.</div>`;return;}
+  try{
+    await fetch(C.SB+'/auth/v1/recover',{method:'POST',headers:{'Content-Type':'application/json','apikey':C.KEY},body:JSON.stringify({email})});
+    el.innerHTML=`<div class="al as2">Reset link sent! Check your email.</div>`;
+  }catch(e){el.innerHTML=`<div class="al ae">Error. Try again.</div>`;}
+}
+
+async function dol(){
+  const email=document.getElementById('le').value.trim(),pw=document.getElementById('lp').value,el=document.getElementById('ler');
+  if(!email||!pw){el.innerHTML=`<div class="al ae">Fill all fields.</div>`;return;}
+  try{
+    const r=await fetch(C.SB+'/auth/v1/token?grant_type=password',{method:'POST',headers:{'Content-Type':'application/json','apikey':C.KEY},body:JSON.stringify({email,password:pw})});
+    const d=await r.json();
+    if(d.error){el.innerHTML=`<div class="al ae">Invalid email or password.</div>`;return;}
+    // Check if banned
+    const usr=await sbf('users?email=eq.'+encodeURIComponent(email)+'&select=is_banned,username,full_name');
+    if(usr[0]?.is_banned){el.innerHTML=`<div class="al ae">This account has been banned. Contact support.</div>`;return;}
+    sessionStorage.setItem('sbt',d.access_token);sessionStorage.setItem('sbu',JSON.stringify(d.user));
+    cu=d.user;cm();
+    document.getElementById('ab').textContent='My Account';document.getElementById('ab').onclick=()=>gp('dash');
+    toast('👋 Welcome back!',email,'success');gp('dash');
+  }catch(e){el.innerHTML=`<div class="al ae">Login error.</div>`;}
+}
+
+function cs(){
+  const t=sessionStorage.getItem('sbt'),u=sessionStorage.getItem('sbu');
+  if(t&&u){cu=JSON.parse(u);document.getElementById('ab').textContent='My Account';document.getElementById('ab').onclick=()=>gp('dash');}
+}
+function lo(){sessionStorage.clear();cu=null;document.getElementById('ab').textContent='Enter Now';document.getElementById('ab').onclick=oa;gp('home');toast('Logged out','See you soon!','info');}
+
+// DASHBOARD
+async function ldash(){if(!cu){oa();return;}document.getElementById('dn').textContent=cu.email;dt('entry');}
+
+async function dt(tab){
+  document.querySelectorAll('.sn2 a').forEach(a=>a.classList.remove('active'));
+  const el=document.getElementById('t'+tab.charAt(0));if(el)el.classList.add('active');
+  const main=document.getElementById('dm'),token=sessionStorage.getItem('sbt');
+  if(tab==='entry'){
+    main.innerHTML=`<div class="dc"><div class="dct">My Entry Number</div><div id="men"><p style="color:var(--mt);">Loading...</p></div></div>`;
+    try{
+      const p=await sbf('users?email=eq.'+encodeURIComponent(cu.email)+'&select=id,username,full_name,payment_method,payment_name,payment_number','GET',null,token);
+      if(p[0]){document.getElementById('dh').textContent='@'+(p[0].username||'user');document.getElementById('dn').textContent=p[0].full_name||cu.email;}
+      const uid=p[0]?.id;
+      if(uid&&ag){
+        const e=await sbf('entries?user_id=eq.'+uid+'&giveaway_id=eq.'+ag.id+'&select=entry_number','GET',null,token);
+        if(e[0]){
+          const n=`#${String(e[0].entry_number).padStart(5,'0')}`;
+          main.innerHTML=`<div class="dc"><div class="dct">My Entry Number</div><div class="bn2">${n}<button class="cb" onclick="ct('${n}')">📋</button></div><div style="color:var(--mt);font-size:.83rem;margin-top:.5rem;">Your number for this round.</div><div class="sr" style="justify-content:flex-start;margin-top:1rem;"><button class="sb2 sw" onclick="swa('${n}')">📱 WhatsApp</button><button class="sb2 sf" onclick="sfb()">📘 Facebook</button></div></div>
+          <div class="dc"><div class="dct">Payment Details</div><div class="sg2"><div class="sb4"><div class="sl2">Method</div><div style="color:var(--wh);font-weight:700;margin-top:.4rem;">${p[0]?.payment_method||'—'}</div></div><div class="sb4"><div class="sl2">Name</div><div style="color:var(--wh);font-weight:700;margin-top:.4rem;">${p[0]?.payment_name||'—'}</div></div><div class="sb4"><div class="sl2">Number</div><div style="color:var(--wh);font-weight:700;margin-top:.4rem;">${p[0]?.payment_number||'—'}</div></div></div></div>`;
+        }else{
+          main.innerHTML=`<div class="dc"><div class="dct">My Entry Number</div><div class="al aw">No entry number for this round yet.</div><button class="bp" onclick="oa()" style="font-size:.88rem;padding:.65rem 1.4rem;">Enter Now</button></div>`;
+        }
+      }else{main.innerHTML=`<div class="dc"><div class="dct">My Entry Number</div><p style="color:var(--mt);">No active giveaway at the moment.</p></div>`;}
+    }catch(e){console.log(e);}
+  }else if(tab==='pay'){
+    main.innerHTML=`<div class="dc"><div class="dct">Payment Details</div><div id="pd2"><p style="color:var(--mt);">Loading...</p></div></div>`;
+    try{
+      const p=await sbf('users?email=eq.'+encodeURIComponent(cu.email)+'&select=payment_method,payment_name,payment_number','GET',null,token);
+      if(p[0])document.getElementById('pd2').innerHTML=`<div class="sg2"><div class="sb4"><div class="sl2">Method</div><div style="color:var(--wh);font-weight:700;margin-top:.4rem;">${p[0].payment_method}</div></div><div class="sb4"><div class="sl2">Name</div><div style="color:var(--wh);font-weight:700;margin-top:.4rem;">${p[0].payment_name}</div></div><div class="sb4"><div class="sl2">Number</div><div style="color:var(--wh);font-weight:700;margin-top:.4rem;">${p[0].payment_number}</div></div></div><p style="color:var(--mt);font-size:.83rem;margin-top:1rem;">To update your details contact support.</p>`;
+    }catch(e){}
+  }else if(tab==='proof'){
+    main.innerHTML=`<div class="dc"><div class="dct">📸 Upload Payment Proof</div><div class="al ai">If you won and received your prize upload a screenshot here so the community can see the giveaway is real.</div><div class="ua2" onclick="document.getElementById('prf').click()"><input type="file" id="prf" accept="image/*" onchange="pvp(event)"><div class="uai">📷</div><div class="uat">Click to choose an image</div></div><div id="pv" style="margin-top:1rem;"></div><button class="bp" style="margin-top:1rem;font-size:.88rem;padding:.65rem 1.4rem;" onclick="up()">Upload Proof</button></div>`;
+  }else if(tab==='ref'){
+    const ref=`https://subtowin.vercel.app?ref=${(cu.id||'user').substring(0,8)}`;
+    main.innerHTML=`<div class="dc"><div class="dct">🔗 Referral Link</div><div class="al ai">Share this link to invite friends to the Crime Vault Africa giveaway.</div><div style="display:flex;gap:.8rem;align-items:center;background:var(--dk);border:1px solid var(--br);border-radius:8px;padding:.95rem;margin-top:.5rem;"><span style="flex:1;font-size:.83rem;color:var(--bl2);word-break:break-all;">${ref}</span><button class="cb" onclick="ct('${ref}')">📋</button></div><div class="sr" style="justify-content:flex-start;margin-top:1rem;"><button class="sb2 sw" onclick="swa('${ref}')">📱 WhatsApp</button><button class="sb2 sf" onclick="sfb()">📘 Facebook</button></div></div>`;
+  }
+}
+
+function pvp(e){const f=e.target.files[0];if(!f)return;const url=URL.createObjectURL(f);document.getElementById('pv').innerHTML=`<img src="${url}" style="max-width:100%;max-height:280px;border-radius:8px;border:1px solid var(--br);">`;}
+function up(){toast('Proof uploaded!','Now visible on the Winners page.','success');}
+
+// ADMIN
+function oal(){om('Admin Access');document.getElementById('mb').innerHTML=`<div class="fg"><label class="fl">Admin Password</label><input class="fi" id="ap" type="password" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')ca()"></div><div id="ae"></div><button class="bp" style="width:100%;" onclick="ca()">Access Dashboard →</button>`;}
+function ca(){const pw=document.getElementById('ap').value;if(pw===adminPW){cm();gp('admin');}else document.getElementById('ae').innerHTML=`<div class="al ae">Incorrect password.</div>`;}
+
+function chpw(){
+  const np=document.getElementById('anpw').value,np2=document.getElementById('anpw2').value,fb=document.getElementById('pwfb');
+  if(!np||!np2){fb.innerHTML=`<div class="al ae">Fill both fields.</div>`;return;}
+  if(np!==np2){fb.innerHTML=`<div class="al ae">Passwords do not match.</div>`;return;}
+  if(np.length<6){fb.innerHTML=`<div class="al ae">Password too short (min 6).</div>`;return;}
+  adminPW=np;
+  fb.innerHTML=`<div class="al as2">Password updated successfully! Note: this resets when page refreshes. For permanent change contact your developer.</div>`;
+}
+
+async function lad(){
+  try{
+    const entries=await sbf('entries?select=id,entry_number,users(username,full_name,email,payment_method,payment_name,payment_number)&order=entry_number.asc');
+    const gives=await sbf('giveaways?order=created_at.desc');
+    const wins=await sbf('winners?select=id');
+    document.getElementById('asp').textContent=entries.length;
+    document.getElementById('asr').textContent=gives.length;
+    document.getElementById('asw').textContent=wins.length;
+    const act=Array.isArray(gives)?gives.find(g=>g.is_active):null;
+    document.getElementById('ass').textContent=act?'● Active':'● Inactive';
+    document.getElementById('ass').style.color=act?'var(--gr)':'var(--mt)';
+    const agd=document.getElementById('aga');
+    if(act){
+      const now=new Date(),draw=new Date(act.draw_date),diff=draw-now;
+      const cs=diff>0?`${Math.floor(diff/86400000)}d ${Math.floor((diff%86400000)/3600000)}h ${Math.floor((diff%3600000)/60000)}m`:'Countdown ended';
+      agd.innerHTML=`<div class="sg2" style="margin-bottom:1rem;">
+        <div class="sb4"><div class="sl2">Draw Date</div><div style="color:var(--wh);font-size:.86rem;font-weight:600;margin-top:.3rem;">${draw.toLocaleString()}</div></div>
+        <div class="sb4"><div class="sl2">Countdown</div><div style="color:var(--bl);font-weight:700;margin-top:.3rem;">${cs}</div></div>
+        <div class="sb4"><div class="sl2">Winners</div><div style="color:var(--gd);font-weight:700;margin-top:.3rem;">${act.winner_count}</div></div>
+        <div class="sb4"><div class="sl2">Entry Deadline</div><div style="color:var(--wh);font-size:.84rem;font-weight:600;margin-top:.3rem;">${act.entry_deadline?new Date(act.entry_deadline).toLocaleString():'Not set'}</div></div>
+        <div class="sb4"><div class="sl2">New Users Videos</div><div style="color:var(--gd);font-weight:700;margin-top:.3rem;">${act.videos_new||2}</div></div>
+        <div class="sb4"><div class="sl2">Existing Users Videos</div><div style="color:var(--gd);font-weight:700;margin-top:.3rem;">${act.videos_existing||2}</div></div>
+      </div>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+        <button class="bs" onclick="eem('${act.id}')" style="font-size:.84rem;padding:.58rem 1.2rem;">✏️ Edit Giveaway</button>
+        <button class="bd" onclick="cang('${act.id}')">💣 Cancel Giveaway</button>
+      </div>`;
+    }else{agd.innerHTML=`<p style="color:var(--mt);">No active giveaway. Create one below.</p>`;}
+    const pDiv=document.getElementById('apl');
+    if(entries.length){
+      pDiv.innerHTML=`<table class="ht2"><thead><tr><th>#</th><th>Username</th><th>Full Name</th><th>Email</th><th>Payment</th><th>Number</th><th>Action</th></tr></thead><tbody>${entries.map(e=>`<tr><td><strong style="color:var(--bl)">#${String(e.entry_number).padStart(5,'0')}</strong></td><td>@${e.users?.username||''}</td><td>${e.users?.full_name||''}</td><td style="font-size:.79rem;">${e.users?.email||''}</td><td>${e.users?.payment_method||''}</td><td>${e.users?.payment_number||''}</td><td><button class="bd" style="padding:.26rem .62rem;font-size:.75rem;" onclick="buid('${e.users?.email}')">Ban</button></td></tr>`).join('')}</tbody></table>`;
+    }else{pDiv.innerHTML=`<p style="color:var(--mt);">No participants yet.</p>`;}
+    const pw=await sbf('winners?is_paid=eq.false&select=*,entries(entry_number,users(username,full_name,payment_method,payment_name,payment_number,email))');
+    const awl=document.getElementById('awl');
+    if(pw&&pw.length){
+      awl.innerHTML=pw.map(w=>`<div style="background:var(--dk);border:1px solid var(--br);border-radius:8px;padding:1rem;margin-bottom:.8rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;"><div style="flex:1;"><strong>@${w.entries?.users?.username||'?'}</strong> — #${String(w.entries?.entry_number||0).padStart(5,'0')}<br><span style="color:var(--gd);font-size:.88rem;">${Number(w.prize_amount).toLocaleString()} FCFA → ${w.entries?.users?.payment_method} ${w.entries?.users?.payment_number}</span></div><button class="bp" style="font-size:.82rem;padding:.5rem 1rem;" onclick="mps('${w.id}','${w.entries?.users?.email||''}','${Number(w.prize_amount).toLocaleString()}','${w.entries?.users?.payment_method||''}')">Mark As Paid ✓</button></div>`).join('');
+    }else{awl.innerHTML=`<p style="color:var(--mt);">No pending winners.</p>`;}
+  }catch(e){console.log('Admin load:',e);}
+}
+
+function bpi(){
+  const c=parseInt(document.getElementById('awc').value)||1;
+  const m=['🥇 1st','🥈 2nd','🥉 3rd','4️⃣ 4th','5️⃣ 5th','6️⃣ 6th','7️⃣ 7th','8️⃣ 8th','9️⃣ 9th','🔟 10th'];
+  document.getElementById('pis').innerHTML=Array.from({length:Math.min(c,10)},(_,i)=>`<div class="pr2"><span class="pp2">${m[i]||i+1+'th'}</span><input class="fi" type="number" id="pri${i}" placeholder="5000" style="max-width:185px;"></div>`).join('');
+}
+
+async function cg(){
+  const dl=document.getElementById('adl').value,dd=document.getElementById('add2').value,wc=parseInt(document.getElementById('awc').value),vnew=parseInt(document.getElementById('avnew').value)||2,vex=parseInt(document.getElementById('avex').value)||2,fb=document.getElementById('gfb');
+  if(!dd||!wc){fb.innerHTML=`<div class="al ae">Please fill draw date and number of winners.</div>`;return;}
+  const prizes=[];for(let i=0;i<wc;i++){const v=document.getElementById(`pri${i}`)?.value;prizes.push(parseInt(v)||5000);}
+  try{
+    const r=await fetch(C.SB+'/rest/v1/giveaways',{method:'POST',headers:{'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+C.KEY,'Prefer':'return=minimal'},body:JSON.stringify({prize_amounts:prizes,winner_count:wc,draw_date:new Date(dd).toISOString(),entry_deadline:dl?new Date(dl).toISOString():null,is_active:true,videos_new:vnew,videos_existing:vex,cancelled:false})});
+    if(r.ok){
+      fb.innerHTML=`<div class="al as2">Giveaway created successfully! 🎉</div>`;
+      await lag();lad();toast('🎁 New Giveaway!','A new giveaway round is now live!','success');
+      // Notify all existing users
+      const users=await sbf('users?select=email,full_name');
+      for(const u of users||[]){
+        if(u.email){await sendEmail(u.email,'🎁 New Giveaway Started — SubToWin',emailTemplate('New Giveaway Started!',`A new Crime Vault Africa giveaway is now live!<br><br>Prize: <strong>${prizes.map((p,i)=>`${['1st','2nd','3rd'][i]||i+1+'th'}: ${Number(p).toLocaleString()} FCFA`).join(', ')}</strong><br>Draw Date: <strong>${new Date(dd).toLocaleString()}</strong><br><br>Log in now to enter and get your unique number!`,'Enter Now','https://subtowin.vercel.app'));}
+      }
+    }else{fb.innerHTML=`<div class="al ae">Error creating giveaway. Make sure no other giveaway is currently active.</div>`;}
+  }catch(e){fb.innerHTML=`<div class="al ae">${e.message}</div>`;}
+}
+
+function eem(id){
+  em=true;egid=id;
+  document.getElementById('gft').textContent='✏️ Edit Active Giveaway';
+  document.getElementById('cgb').style.display='none';
+  document.getElementById('egb').style.display='inline-block';
+  document.getElementById('cegb').style.display='inline-block';
+  document.getElementById('gfb').innerHTML=`<div class="al ai">You are editing the active giveaway. Existing entry numbers are preserved.</div>`;
+}
+function ceg2(){
+  em=false;egid=null;
+  document.getElementById('gft').textContent='🎁 Create New Giveaway';
+  document.getElementById('cgb').style.display='inline-block';
+  document.getElementById('egb').style.display='none';
+  document.getElementById('cegb').style.display='none';
+  document.getElementById('gfb').innerHTML='';
+}
+async function seg(){
+  const dl=document.getElementById('adl').value,dd=document.getElementById('add2').value,wc=parseInt(document.getElementById('awc').value),vnew=parseInt(document.getElementById('avnew').value)||2,vex=parseInt(document.getElementById('avex').value)||2,fb=document.getElementById('gfb');
+  if(!dd||!wc){fb.innerHTML=`<div class="al ae">Please fill draw date and winner count.</div>`;return;}
+  const prizes=[];for(let i=0;i<wc;i++){const v=document.getElementById(`pri${i}`)?.value;prizes.push(parseInt(v)||5000);}
+  try{
+    const r=await fetch(C.SB+'/rest/v1/giveaways?id=eq.'+egid,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+C.KEY},body:JSON.stringify({prize_amounts:prizes,winner_count:wc,draw_date:new Date(dd).toISOString(),entry_deadline:dl?new Date(dl).toISOString():null,videos_new:vnew,videos_existing:vex})});
+    if(r.ok){fb.innerHTML=`<div class="al as2">Giveaway updated successfully!</div>`;await lag();ceg2();lad();toast('✏️ Updated','Giveaway changes saved.','success');}
+    else fb.innerHTML=`<div class="al ae">Error updating giveaway.</div>`;
+  }catch(e){fb.innerHTML=`<div class="al ae">${e.message}</div>`;}
+}
+
+async function rmd(){
+  const reason=document.getElementById('drr').value.trim(),fb=document.getElementById('drb');
+  if(!reason){fb.innerHTML=`<div class="al ae">Please provide a reason for the early draw.</div>`;return;}
+  if(!ag){fb.innerHTML=`<div class="al ae">No active giveaway found.</div>`;return;}
+  if(!confirm(`Run draw now?\n\nReason: "${reason}"\n\nThis selects winners immediately and cannot be undone.`))return;
+  fb.innerHTML=`<div class="al ai">Running draw...</div>`;
+  await exd(reason);
+  fb.innerHTML=`<div class="al as2">Draw completed! Check the Winners page.</div>`;
+  lad();
+}
+
+async function cang(id){
+  if(!confirm('Cancel this giveaway?\n\nAll entry numbers will be permanently deleted and all participants notified by email.'))return;
+  try{
+    const entries=await sbf('entries?giveaway_id=eq.'+id+'&select=users(email,full_name)');
+    await fetch(C.SB+'/rest/v1/entries?giveaway_id=eq.'+id,{method:'DELETE',headers:{'apikey':C.KEY,'Authorization':'Bearer '+C.KEY}});
+    await fetch(C.SB+'/rest/v1/giveaways?id=eq.'+id,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+C.KEY},body:JSON.stringify({is_active:false,cancelled:true})});
+    // Notify all participants
+    for(const e of entries||[]){
+      if(e.users?.email){await sendEmail(e.users.email,'⚠️ Giveaway Cancelled — SubToWin',emailTemplate('Giveaway Cancelled',`We are sorry to inform you that the current Crime Vault Africa giveaway round has been cancelled by the admin.<br><br>Your entry number has been voided. Stay tuned — a new round will be announced soon!`,'Visit SubToWin','https://subtowin.vercel.app'));}
+    }
+    ag=null;rh();lad();
+    toast('💣 Giveaway Cancelled','All entry numbers deleted. Participants notified by email.','warning');
+  }catch(e){alert('Error: '+e.message);}
+}
+
+async function mps(id,email,prize,method){
+  if(!confirm('Mark this prize as sent? The winner will be notified by email.'))return;
+  try{
+    await fetch(C.SB+'/rest/v1/winners?id=eq.'+id,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+C.KEY},body:JSON.stringify({is_paid:true})});
+    if(email){
+      await sendEmail(email,'💰 Your Prize Has Been Sent — SubToWin',emailTemplate('Your Prize Has Been Sent! 💰',`Great news! Your prize of <strong>${prize} FCFA</strong> has been sent to your <strong>${method}</strong> number.<br><br>Please check your account and confirm you received it.<br><br>Once received please log in to SubToWin and upload a screenshot as proof so the community can see the giveaway is real!`,'Upload Proof','https://subtowin.vercel.app'));
+    }
+    toast('✅ Prize Marked Sent','Winner notified by email.','success');lad();
+  }catch(e){alert('Error: '+e.message);}
+}
+
+function sbn(){
+  const msg=document.getElementById('abn').value.trim();if(!msg)return;
+  const b=document.getElementById('bnr');b.textContent=msg;b.classList.add('show');
+  toast('📢 Banner Live',msg,'info');
+  // Push notification to all users
+  if(Notification.permission==='granted'){try{new Notification('📢 SubToWin Announcement',{body:msg});}catch(e){}}
+}
+function hbn(){document.getElementById('bnr').classList.remove('show');}
+
+async function bu(){const e=document.getElementById('abe').value.trim();if(!e)return;buid(e);}
+async function buid(email){
+  if(!confirm('Ban user: '+email+'?'))return;
+  try{
+    await fetch(C.SB+'/rest/v1/users?email=eq.'+encodeURIComponent(email),{method:'PATCH',headers:{'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+C.KEY},body:JSON.stringify({is_banned:true})});
+    toast('🚫 Banned',email,'warning');lad();
+  }catch(e){alert('Error: '+e.message);}
+}
+async function ubu(){
+  const email=document.getElementById('abe').value.trim();
+  if(!email||!confirm('Unban: '+email+'?'))return;
+  try{
+    await fetch(C.SB+'/rest/v1/users?email=eq.'+encodeURIComponent(email),{method:'PATCH',headers:{'Content-Type':'application/json','apikey':C.KEY,'Authorization':'Bearer '+C.KEY},body:JSON.stringify({is_banned:false})});
+    toast('✅ Unbanned',email,'success');lad();
+  }catch(e){alert('Error: '+e.message);}
+}
+</script>
+</body>
+</html>
