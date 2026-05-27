@@ -26,7 +26,7 @@ function emailT(title, body, btn, url) {
   return `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0d1117;color:#f0f6fc;padding:2rem;border-radius:12px;"><div style="text-align:center;margin-bottom:2rem;"><span style="font-size:2.5rem;font-weight:900;letter-spacing:4px;">Sub<span style="color:#1e6fff;">To</span>Win</span></div><h2 style="color:#f0f6fc;margin-bottom:1rem;">${title}</h2><div style="color:#7d8590;line-height:1.8;margin-bottom:1.5rem;">${body}</div>${btn ? `<div style="text-align:center;"><a href="${url}" style="background:#1e6fff;color:#fff;padding:.9rem 2rem;border-radius:8px;text-decoration:none;font-weight:700;display:inline-block;">${btn}</a></div>` : ''}</div>`;
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
