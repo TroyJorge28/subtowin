@@ -675,46 +675,66 @@ function checkYTRedirect(){
 }
 
 async function vyt(token){
-  const vs=document.getElementById('vs'),e3=document.getElementById('e3'),pb=document.getElementById('pb'),vl=document.getElementById('vidlinks');
+  const vs=document.getElementById('vs'),e3=document.getElementById('e3');
   vs.innerHTML=`<div class="vi">⏳</div><div class="vt"><strong>Verifying...</strong><span>Please wait</span></div>`;
-  pb.style.display='block';vl.innerHTML='';
-  const reqV=ag?(rd.isExisting?(ag.videos_existing||2):(ag.videos_new||2)):2;
   try{
-    const sr=await fetch(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mySubscriptions=true&forChannelId=${YT_CH}`,{headers:{Authorization:`Bearer ${token}`}});
-    const sd=await sr.json();const subscribed=sd.items&&sd.items.length>0;
-    upst(1,subscribed?'ok':'fail',subscribed?'✓':'✗');
+    const reqV=ag?(rd.isExisting?(ag.videos_existing||2):(ag.videos_new||2)):2;
+    const h={Authorization:`Bearer ${token}`};
+    // Run all checks simultaneously
+    const [sr,vr,lr]=await Promise.all([
+      fetch(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mySubscriptions=true&forChannelId=${YT_CH}`,{headers:h}),
+      fetch(`https://www.googleapis.com/youtube/v3/search?part=id,snippet&channelId=${YT_CH}&type=video&maxResults=10&order=date`,{headers:h}),
+      fetch(`https://www.googleapis.com/youtube/v3/videos?part=id&myRating=like&maxResults=50`,{headers:h})
+    ]);
+    const [sd,vd,ld]=await Promise.all([sr.json(),vr.json(),lr.json()]);
+    const subscribed=sd.items&&sd.items.length>0;
     if(!subscribed){
-      vs.innerHTML=`<div class="vi">❌</div><div class="vt"><strong style="color:#ff9090;">Not Subscribed</strong><span>Please subscribe to Crime Vault Africa first.</span></div>`;
-      e3.innerHTML=`<div class="al ae">You are not subscribed.<br><a href="${CH_URL}" target="_blank" style="color:var(--bl);">Subscribe Now ↗</a></div>`;
+      vs.innerHTML=`<div class="vi">❌</div><div class="vt"><strong style="color:#ff9090;">Not Subscribed</strong><span>Please subscribe to Crime Vault Africa first then click Re-verify.</span></div>`;
+      e3.innerHTML=`<div class="al ae">You are not subscribed to Crime Vault Africa.<br><a href="${CH_URL}" target="_blank" style="color:var(--bl);">Subscribe Now ↗</a></div>`;
       document.getElementById('ytb').textContent='🔄 Re-verify';document.getElementById('ytb').onclick=()=>vyt(token);return;
     }
-    rd.ytId=sd.items[0]?.snippet?.resourceId?.channelId||'sub_ok';
-    // Subscription confirmed - now try to check videos but do not block if API fails
-    upst(2,'ok','Checking...');upst(3,'ok','Verified');upst(4,'ok','Complete');
-    try{
-      const vr=await fetch(`https://www.googleapis.com/youtube/v3/search?part=id,snippet&channelId=${YT_CH}&type=video&maxResults=50&order=date`,{headers:{Authorization:`Bearer ${token}`}});
-      const vd=await vr.json();const cvids=vd.items||[];
-      if(cvids.length>0){
-        const lr=await fetch(`https://www.googleapis.com/youtube/v3/videos?part=id&myRating=like&maxResults=50`,{headers:{Authorization:`Bearer ${token}`}});
-        const ld=await lr.json();const likedIds=(ld.items||[]).map(v=>v.id);
-        const chanVidIds=cvids.map(v=>v.id.videoId);
-        const likedChan=chanVidIds.filter(id=>likedIds.includes(id));
-        const effReq=Math.min(reqV,cvids.length);
-        upst(2,likedChan.length>=effReq?'ok':'fail',`${likedChan.length}/${effReq}`);
-        if(likedChan.length<effReq && effReq>0){
-          const remaining=cvids.filter(v=>!likedChan.includes(v.id.videoId)).slice(0,Math.max(0,effReq-likedChan.length));
-          vs.innerHTML=`<div class="vi">⚠️</div><div class="vt"><strong style="color:#f0b429;">Almost there!</strong><span>Liked ${likedChan.length}/${effReq} videos. Please like ${effReq-likedChan.length} more then re-verify.</span></div>`;
-          if(remaining.length){vl.innerHTML=`<p style="color:var(--wh);font-size:.88rem;margin-bottom:.6rem;font-weight:600;">Videos to like and comment on:</p><div class="vl">`+remaining.map(v=>`<a class="vli" href="https://www.youtube.com/watch?v=${v.id.videoId}" target="_blank">📹 ${v.snippet?.title||'Video'}<span>Open ↗</span></a>`).join('')+'</div>';}
-          e3.innerHTML=`<div class="al ae">Please like ${effReq-likedChan.length} more video(s) then click Re-verify.</div>`;
-          document.getElementById('ytb').textContent='🔄 Re-verify';document.getElementById('ytb').onclick=()=>vyt(token);return;
-        }
-      }
-    }catch(verifyErr){console.log('Video check skipped:',verifyErr);}
-    // All good - subscription verified
+    rd.ytId=sd.items[0]?.snippet?.resourceId?.channelId||'verified';
+    const cvids=vd.items||[];
+    const likedIds=(ld.items||[]).map(v=>v.id);
+    const chanVidIds=cvids.map(v=>v.id.videoId);
+    const likedChan=chanVidIds.filter(id=>likedIds.includes(id));
+    const effReq=Math.min(reqV,cvids.length);
+    if(cvids.length>0&&likedChan.length<effReq){
+      const remaining=cvids.filter(v=>!likedChan.includes(v.id.videoId)).slice(0,effReq-likedChan.length);
+      vs.innerHTML=`<div class="vi">⚠️</div><div class="vt"><strong style="color:#f0b429;">Almost there!</strong><span>Liked ${likedChan.length}/${effReq} videos. Like ${effReq-likedChan.length} more then re-verify.</span></div>`;
+      const vl=document.getElementById('vidlinks');
+      if(vl&&remaining.length){vl.innerHTML=`<p style="color:var(--wh);font-size:.88rem;margin-bottom:.6rem;font-weight:600;">Videos to like and comment on:</p><div class="vl">`+remaining.map(v=>`<a class="vli" href="https://www.youtube.com/watch?v=${v.id.videoId}" target="_blank">📹 ${v.snippet?.title||'Video'}<span>Open ↗</span></a>`).join('')+'</div>';}
+      e3.innerHTML=`<div class="al ae">Please like ${effReq-likedChan.length} more video(s) then click Re-verify.</div>`;
+      document.getElementById('ytb').textContent='🔄 Re-verify';document.getElementById('ytb').onclick=()=>vyt(token);return;
+    }
     ytv=true;
-    vs.innerHTML=`<div class="vi">✅</div><div class="vt"><strong style="color:#56d364;">All requirements met!</strong><span>Subscribed ✓ Likes ✓ Comments ✓</span></div>`;
-    e3.innerHTML='';document.getElementById('ytb').style.display='none';document.getElementById('sw').style.display='block';
-  }catch(err){e3.innerHTML=`<div class="al ae">Verification error. Please try again.</div>`;console.error(err);}
+    vs.innerHTML=`<div class="vi">✅</div><div class="vt"><strong style="color:#56d364;">Subscribed ✓ — Requirements confirmed!</strong><span>Click below to get your entry number.</span></div>`;
+    e3.innerHTML='';
+    document.getElementById('ytb').style.display='none';
+    document.getElementById('sw').style.display='block';
+  }catch(err){
+    // If API times out or fails, show manual confirmation
+    vs.innerHTML=`<div class="vi">⚠️</div><div class="vt"><strong style="color:#f0b429;">Verification timeout</strong><span>Please confirm manually below.</span></div>`;
+    e3.innerHTML=`<div class="al aw" style="margin-bottom:.8rem;">The automatic check timed out. Please confirm you have completed all requirements.</div>
+    <label class="fc" style="margin-bottom:.6rem;"><input type="checkbox" id="mc1"><span>✅ I am subscribed to Crime Vault Africa</span></label>
+    <label class="fc" style="margin-bottom:.6rem;"><input type="checkbox" id="mc2"><span>👍 I have liked at least 2 videos</span></label>
+    <label class="fc" style="margin-bottom:.9rem;"><input type="checkbox" id="mc3"><span>💬 I have commented on at least 2 videos</span></label>
+    <button class="bp" style="width:100%;" onclick="manualConfirm()">Confirm & Continue</button>`;
+    document.getElementById('ytb').style.display='none';
+    console.log('Verification error:',err);
+  }
+}
+
+function manualConfirm(){
+  const c1=document.getElementById('mc1')?.checked;
+  const c2=document.getElementById('mc2')?.checked;
+  const c3=document.getElementById('mc3')?.checked;
+  if(!c1||!c2||!c3){alert('Please confirm all 3 requirements.');return;}
+  rd.ytId='manual_confirmed';ytv=true;
+  document.getElementById('e3').innerHTML='';
+  const sw=document.getElementById('sw');if(sw)sw.style.display='block';
+  const vs=document.getElementById('vs');
+  if(vs)vs.innerHTML=`<div class="vi">✅</div><div class="vt"><strong style="color:#56d364;">Requirements confirmed!</strong><span>Click below to get your entry number.</span></div>`;
 }
 
 async function suben(){
