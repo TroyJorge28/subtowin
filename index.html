@@ -587,23 +587,15 @@ function rr(step){
     <div style="display:flex;gap:1rem;"><button class="bs" style="flex:1;" onclick="rr(1)">←</button><button class="bp" style="flex:2;" onclick="s2()">Continue →</button></div>`;
   }else if(step===3){
     const reqV=ag?(rd.isExisting?(ag.videos_existing||2):(ag.videos_new||2)):2;
-    b.innerHTML=ind+`<h3 style="font-family:'Barlow Condensed';font-size:1.05rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.1rem;">📺 YouTube Requirements</h3>
-    <div class="al ai">Complete these steps on YouTube then submit your channel link below.</div>
-    <div style="display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.2rem;">
-      <a href="${CH_URL}" target="_blank" style="display:flex;align-items:center;gap:.8rem;background:var(--dk);border:1px solid var(--br);border-radius:8px;padding:.9rem;text-decoration:none;color:var(--wh);font-size:.88rem;">
-        <span style="font-size:1.3rem;">📺</span><div><strong>Step 1</strong> — Subscribe to Crime Vault Africa<span style="display:block;color:var(--mt);font-size:.8rem;">Click here to open the channel</span></div><span style="margin-left:auto;color:var(--bl2);font-size:.8rem;">Open ↗</span>
-      </a>
-      <div style="background:var(--dk);border:1px solid var(--br);border-radius:8px;padding:.9rem;font-size:.88rem;">
-        <span style="font-size:1.3rem;">👍</span> <strong>Step 2</strong> — Like and comment on <strong>${reqV} video(s)</strong> on the channel
-      </div>
-    </div>
-    <div class="fg">
-      <label class="fl">Your YouTube Channel Link</label>
-      <input class="fi" id="ytlink" placeholder="https://www.youtube.com/@yourname" type="url">
-      <div style="color:var(--mt);font-size:.78rem;margin-top:.35rem;">Go to YouTube → your profile → copy the link from your channel page</div>
-    </div>
+    b.innerHTML=ind+`<h3 style="font-family:'Barlow Condensed';font-size:1.05rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.1rem;">📺 YouTube Verification</h3>
+    <div class="al ai">📋 You must subscribe AND like+comment on ${reqV} video(s).</div>
+    <a href="${CH_URL}" target="_blank" style="display:block;background:var(--dk);border:1px solid var(--br);border-radius:8px;padding:.9rem;text-decoration:none;color:var(--bl2);margin-bottom:1rem;font-size:.88rem;">📺 Open Crime Vault Africa YouTube ↗</a>
+    <div class="al aw" style="font-size:.82rem;">⚠️ On the Google screen scroll down and click <strong>Continue</strong>. This is safe.</div>
+    <div class="vs" id="vs"><div class="vi">⏳</div><div class="vt"><strong>Not Verified</strong><span>Click the button below to connect your YouTube account.</span></div></div>
+    <div id="vidlinks"></div>
     <div id="e3"></div>
-    <button class="bp" style="width:100%;" onclick="submitYT()">✅ Submit & Get My Number!</button>
+    <button class="yb" id="ytb" onclick="cyt()">▶ Connect with YouTube</button>
+    <div id="sw" style="display:none;margin-top:.9rem;"><button class="bp" style="width:100%;" onclick="suben()">🎫 Get My Entry Number!</button></div>
     <div style="margin-top:.9rem;"><button class="bs" style="width:100%;font-size:.86rem;" onclick="rr(2)">←</button></div>`;
   }
 }
