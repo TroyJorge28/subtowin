@@ -688,18 +688,20 @@ async function vyt(token){
     ]);
     const [sd,vd,ld]=await Promise.all([sr.json(),vr.json(),lr.json()]);
     const subscribed=sd.items&&sd.items.length>0;
-    if(!subscribed){
-      vs.innerHTML=`<div class="vi">❌</div><div class="vt"><strong style="color:#ff9090;">Not Subscribed</strong><span>Please subscribe to Crime Vault Africa first then click Re-verify.</span></div>`;
-      e3.innerHTML=`<div class="al ae">You are not subscribed to Crime Vault Africa.<br><a href="${CH_URL}" target="_blank" style="color:var(--bl);">Subscribe Now ↗</a></div>`;
-      document.getElementById('ytb').textContent='🔄 Re-verify';document.getElementById('ytb').onclick=()=>vyt(token);return;
-    }
-    rd.ytId=sd.items[0]?.snippet?.resourceId?.channelId||'verified';
     const cvids=vd.items||[];
     const likedIds=(ld.items||[]).map(v=>v.id);
     const chanVidIds=cvids.map(v=>v.id.videoId);
     const likedChan=chanVidIds.filter(id=>likedIds.includes(id));
     const effReq=Math.min(reqV,cvids.length);
-    if(cvids.length>0&&likedChan.length<effReq){
+    // Pass if subscribed OR if they have liked videos on the channel (proves engagement)
+    const hasLiked=likedChan.length>0;
+    if(!subscribed&&!hasLiked){
+      vs.innerHTML=`<div class="vi">❌</div><div class="vt"><strong style="color:#ff9090;">Not Verified</strong><span>Please subscribe and like videos on Crime Vault Africa then click Re-verify.</span></div>`;
+      e3.innerHTML=`<div class="al ae">Could not verify your subscription. Please:<br>1. Subscribe to Crime Vault Africa<br>2. Like at least 1 video<br>3. Make sure subscriptions are public in YouTube Privacy settings<br><a href="${CH_URL}" target="_blank" style="color:var(--bl);">Open Crime Vault Africa ↗</a></div>`;
+      document.getElementById('ytb').textContent='🔄 Re-verify';document.getElementById('ytb').onclick=()=>vyt(token);return;
+    }
+    rd.ytId=subscribed?(sd.items[0]?.snippet?.resourceId?.channelId||'verified'):'liked_verified';
+    if(cvids.length>0&&likedChan.length<effReq&&subscribed){
       const remaining=cvids.filter(v=>!likedChan.includes(v.id.videoId)).slice(0,effReq-likedChan.length);
       vs.innerHTML=`<div class="vi">⚠️</div><div class="vt"><strong style="color:#f0b429;">Almost there!</strong><span>Liked ${likedChan.length}/${effReq} videos. Like ${effReq-likedChan.length} more then re-verify.</span></div>`;
       const vl=document.getElementById('vidlinks');
